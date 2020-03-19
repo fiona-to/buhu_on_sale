@@ -1,5 +1,6 @@
 import React from "react";
 import BarChartTooltip from "../bar-chart-tooltip/bar-chart-tooltip.component";
+import { CustomizedAxisTick } from "../../utils/rechart-utils";
 /*----------------------------------
   Styles
 -----------------------------------*/
@@ -35,7 +36,7 @@ const ProductSaleStats = props => {
         <ResponsiveContainer width="95%" height={320}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" interval={0} />
+            <XAxis dataKey="name" interval={0} tick={<CustomizedAxisTick />} />
             <YAxis />
             <Tooltip content={<BarChartTooltip />} />
             <Legend />

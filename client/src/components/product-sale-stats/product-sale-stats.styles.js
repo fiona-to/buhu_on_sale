@@ -11,13 +11,8 @@ export const Styled = styled.div`
     }
   }
 
-  // BAR CHART
-  .recharts-surface {
-    //margin: 0px 30px 5px 20px;
-  }
-
   .recharts-legend-item {
-    margin-top: 20px;
+    margin-top: 55px;
   }
 
   .recharts-legend-item-text,

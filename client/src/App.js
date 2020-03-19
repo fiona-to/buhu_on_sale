@@ -16,7 +16,7 @@ import { store } from "./mobx/store.mobx";
 Styles
 -----------------------------------*/
 import "./App.scss";
-
+import IosHomeOutline from "react-ionicons/lib/IosHomeOutline";
 /*--------------------------------------------------------
  COMPONENT: APP
 --------------------------------------------------------*/
@@ -42,7 +42,18 @@ const App = () => {
       <MobXProvider store={store}>
         <div className="App">
           <Router>
-            <AppBreadCrumb title="Home" path="/" component={HomePage} />
+            <AppBreadCrumb
+              title={
+                <>
+                  <span className="home-icon">
+                    <IosHomeOutline fontSize="26px" color="#0f4c75" />
+                  </span>
+                  Home
+                </>
+              }
+              path="/"
+              component={HomePage}
+            />
           </Router>
         </div>
       </MobXProvider>

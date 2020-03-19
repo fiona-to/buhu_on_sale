@@ -74,7 +74,11 @@ const ProductTable = inject("store")(
     -----------------------------------*/
     const listColumns = [
       { dataField: "name", text: "Name" },
-      { dataField: "description", text: "Description" },
+      {
+        dataField: "description",
+        text: "Description",
+        formatter: (cell, row) => cell.substring(0, 30) + "..."
+      },
       { dataField: "in_stock", text: "In stock" },
       {
         dataField: "actions",

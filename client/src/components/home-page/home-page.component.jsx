@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, withRouter, Route } from "react-router-dom";
+import { Breadcrumbs } from "react-breadcrumbs";
 import { Header } from "../navbar/header.component";
 import { CarouselIntro } from "../carousel/carousel.component";
 import { Footer } from "../footer/footer.component";
 import { Routes as HomePageRouteConfig } from "./home-page.routes";
 import CategoryPage from "../category-page/category-page.component";
-import { Breadcrumbs } from "react-breadcrumbs";
 import AppBreadCrumb from "../bread-crumb/bread-crumb.component";
 /*----------------------------------
   Styles
