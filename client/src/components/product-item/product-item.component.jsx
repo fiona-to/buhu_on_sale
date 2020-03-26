@@ -11,9 +11,13 @@ import { Styled } from "../product-item/product-item.styles";
 --------------------------------------------------------*/
 const ProductItem = props => {
   const { id, image_url, name, pricing } = props.item;
+  const isAllProductPage = props.isAllProductPage ? true : false;
   const handleDetailClick = () => {
+    console.log(isAllProductPage);
     props.history.push({
-      pathname: `${props.match.url}/product/${id}`,
+      pathname: isAllProductPage
+        ? `/products/${id}`
+        : `${props.match.url}/product/${id}`,
       state: {
         isHome: true
       }
