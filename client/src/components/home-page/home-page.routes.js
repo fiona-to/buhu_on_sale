@@ -1,5 +1,4 @@
 import React from "react";
-import CategoryPage from "../category-page/category-page.component";
 import Admin from "../admin/admin.component";
 import ProductRoutes from "../product-page/product-page.routes";
 /*--------------------------------------------------------
@@ -12,7 +11,7 @@ export const Routes = [
     childContent: () => <Admin />
   },
   {
-    path: "/product",
+    path: "/category/:id",
     title: "Product",
     childContent: () => <ProductRoutes />
   }

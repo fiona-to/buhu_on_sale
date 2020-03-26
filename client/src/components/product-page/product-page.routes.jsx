@@ -13,12 +13,12 @@ const ProductRoutes = props => {
         <Route
           exact
           key="productPage"
-          path="/product"
+          path="/category/:id"
           component={ProductPage}
         />
         <AppBreadCrumb
           key="detailPage"
-          path={`${props.match.path}/detail/:id`}
+          path={`${props.match.path}/product/:id`}
           title="Detail"
           component={ProductDetail}
         />

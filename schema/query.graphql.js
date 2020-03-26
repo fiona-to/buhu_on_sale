@@ -41,6 +41,13 @@ const QueryType = new GraphQLObjectType({
         return await Product.findById(args.id);
       }
     },
+    productByCategory: {
+      type: new GraphQLList(ProductType),
+      args: { catId: { type: new GraphQLNonNull(GraphQLID) } },
+      async resolve(parent, args) {
+        return await Product.find({ categoryId: args.catId });
+      }
+    },
     categories: {
       type: new GraphQLList(CategoryType),
       async resolve(parent, args) {

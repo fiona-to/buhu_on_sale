@@ -13,7 +13,7 @@ const ProductItem = props => {
   const { id, image_url, name, pricing } = props.item;
   const handleDetailClick = () => {
     props.history.push({
-      pathname: `/product/detail/${id}`,
+      pathname: `${props.match.url}/product/${id}`,
       state: {
         isHome: true
       }

@@ -5,7 +5,7 @@ import ProductItem from "../product-item/product-item.component";
   GraphQL, MobX
 -----------------------------------*/
 import { graphql } from "react-apollo";
-import { getProducts } from "../../graphql-queries/product.graphql";
+import { getProductByCategory } from "../../graphql-queries/product.graphql";
 /*----------------------------------
   Styles
 -----------------------------------*/
@@ -16,15 +16,15 @@ import { Styled } from "./product-page.styles";
 --------------------------------------------------------*/
 const ProductPage = props => {
   const displayProductItem = () => {
-    if (props.Products.loading) {
+    if (props.ProductByCategory.loading) {
       return <AppSpinner />;
     } else {
-      const { products } = props.Products;
+      const products = props.ProductByCategory.productByCategory;
 
       if (products) {
         return products.map(item => {
           return (
-            <Col xs={6} sm={6} md={3} key={item.id}>
+            <Col xs={6} sm={6} md={4} lg={3} key={item.id}>
               <ProductItem item={item} />
             </Col>
           );
@@ -48,4 +48,9 @@ const ProductPage = props => {
   );
 };
 
-export default graphql(getProducts, { name: "Products" })(ProductPage);
+export default graphql(getProductByCategory, {
+  name: "ProductByCategory",
+  options: props => ({
+    variables: { catId: props.match.params.id }
+  })
+})(ProductPage);

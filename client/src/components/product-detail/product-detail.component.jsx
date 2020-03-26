@@ -92,7 +92,7 @@ class ProductDetail extends Component {
                 >
                   {/* backgroundColor: "red", */}
                   <IosCart fontSize="26px" color="#bbe1fa" />
-                  Add to Cart
+                  <span className="add-to-cart-text">Add to Cart</span>
                 </Button>
               </div>
             </Col>

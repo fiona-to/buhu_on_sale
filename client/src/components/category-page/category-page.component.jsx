@@ -30,7 +30,7 @@ const CategoryPage = props => {
             <Col xs={12} sm={12} md={4} key={category.id}>
               <CategoryItem
                 category={category}
-                linkTo={"/product"}
+                linkTo={`/category/${category.id}`}
                 {...props}
               />
             </Col>

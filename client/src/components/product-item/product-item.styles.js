@@ -1,11 +1,19 @@
 import styled from "styled-components";
 
 export const Styled = styled.div`
+  .card {
+    margin-top: 30px;
+
+    @media (max-width: 420px) {
+      margin-top: 20px;
+    }
+  }
+
   .img-container {
     position: relative;
 
     .card-img-top {
-      height: 30vh;
+      height: 36vh;
       overflow: hidden;
       opacity: 1;
       transition: opacity ease-in-out 0.2s;
@@ -45,6 +53,18 @@ export const Styled = styled.div`
     &:hover .btn-container {
       opacity: 1;
     }
+
+    @media (max-width: 1024px) {
+      .card-img-top {
+        height: 23vh;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .card-img-top {
+        height: 23vh;
+      }
+    }
   }
 
   .txt-container {
@@ -53,27 +73,15 @@ export const Styled = styled.div`
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-  }
 
-  @media (max-width: 1024px) {
-    .card-img-top {
-      height: 20vh;
+    @media (max-width: 1024px) {
+      font-size: 72%;
     }
-  }
-
-  @media (max-width: 800px) {
-    .card-img-top {
-      height: 20vh;
+    @media (max-width: 800px) {
+      font-size: 72%;
     }
-  }
-
-  @media (max-width: 420px) {
-    .card-img-top {
-      height: 30vh;
-    }
-
-    .text-container {
-      font-size: 60%;
+    @media (max-width: 420px) {
+      font-size: 72%;
     }
   }
 `;

@@ -16,7 +16,7 @@ import { store } from "./mobx/store.mobx";
 Styles
 -----------------------------------*/
 import "./App.scss";
-import IosHomeOutline from "react-ionicons/lib/IosHomeOutline";
+import IosHome from "react-ionicons/lib/IosHome";
 /*--------------------------------------------------------
  COMPONENT: APP
 --------------------------------------------------------*/
@@ -46,7 +46,7 @@ const App = () => {
               title={
                 <>
                   <span className="home-icon">
-                    <IosHomeOutline fontSize="26px" color="#0f4c75" />
+                    <IosHome fontSize="24px" color="#0f4c75" />
                   </span>
                   Home
                 </>

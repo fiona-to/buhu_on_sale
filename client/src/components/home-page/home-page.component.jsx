@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, withRouter, Route } from "react-router-dom";
+import { Switch, withRouter, Route, Link } from "react-router-dom";
 import { Breadcrumbs } from "react-breadcrumbs";
 import { Header } from "../navbar/header.component";
 import { CarouselIntro } from "../carousel/carousel.component";
@@ -35,8 +35,14 @@ const HomePage = props => {
           <hr />
         </>
       ) : null}
+      {isHome ? (
+        <Link className="view-all" to="/products">
+          View all products
+        </Link>
+      ) : null}
       <Switch>
         <Route exact key="categoryPage" path="/" component={CategoryPage} />
+        <Route path="/products" component={CarouselIntro} />
         {HomePageRouteConfig.map((route, index) => (
           <AppBreadCrumb
             key={index}

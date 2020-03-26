@@ -55,6 +55,37 @@ const getProductById = gql`
   }
 `;
 
+const getProductByCategory = gql`
+  query productByCategory($catId: ID!) {
+    productByCategory(catId: $catId) {
+      id
+      name
+      description
+      in_stock
+      image_url
+      image_public_id
+      manufacture_detail {
+        model_number
+        release_date
+      }
+      pricing {
+        unit_price
+        sale_price
+      }
+      seo
+      sold
+      categoryId
+      category {
+        name
+        description
+        image_url
+        image_public_id
+        hidden
+      }
+    }
+  }
+`;
+
 const deleteProductById = gql`
   mutation deleteProductById($id: ID!, $imgPublicId: String) {
     deleteProductById(id: $id, imgPublicId: $imgPublicId) {
@@ -148,6 +179,7 @@ const updateProductById = gql`
 export {
   getProducts,
   getProductById,
+  getProductByCategory,
   deleteProductById,
   addProduct,
   updateProductById
