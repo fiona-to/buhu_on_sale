@@ -8,12 +8,12 @@ import AppBreadCrumb from "./components/bread-crumb/bread-crumb.component";
 import HomePage from "./components/home-page/home-page.component";
 //import { persistCache } from "apollo-cache-persist";
 /*--------------------------------------------------------
-MOBX CONFIG
+  MOBX CONFIG
 --------------------------------------------------------*/
 import { Provider as MobXProvider } from "mobx-react";
 import { store } from "./mobx/store.mobx";
 /*----------------------------------
-Styles
+  Styles
 -----------------------------------*/
 import "./App.scss";
 import IosHome from "react-ionicons/lib/IosHome";
@@ -38,9 +38,9 @@ const App = () => {
     Rendering
   ----------------------------*/
   return (
-    <ApolloProvider client={client}>
-      <MobXProvider store={store}>
-        <div className="App">
+    <div className="App">
+      <ApolloProvider client={client}>
+        <MobXProvider store={store}>
           <Router>
             <AppBreadCrumb
               title={
@@ -55,9 +55,9 @@ const App = () => {
               component={HomePage}
             />
           </Router>
-        </div>
-      </MobXProvider>
-    </ApolloProvider>
+        </MobXProvider>
+      </ApolloProvider>
+    </div>
   );
 };
 

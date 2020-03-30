@@ -22,6 +22,17 @@ export const Styled = styled.div`
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.2s;
 
+    .cart-text {
+      margin-left: 8px;
+    }
+
+    .badge {
+      font-size: 92%;
+      color: white;
+      background-color: #46a74e;
+      transform: translateY(-8px);
+    }
+
     &:hover {
       color: #3282b8;
       border-bottom: 2px solid #3282b8;

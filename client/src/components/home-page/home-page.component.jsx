@@ -8,7 +8,6 @@ import { Routes as HomePageRouteConfig } from "./home-page.routes";
 import CategoryPage from "../category-page/category-page.component";
 import AppBreadCrumb from "../bread-crumb/bread-crumb.component";
 import AllProductRoutes from "../product-all/product-all.routes";
-//import ProductDetail from "../product-detail/product-detail.component";
 /*----------------------------------
   Styles
 -----------------------------------*/
