@@ -5,4 +5,10 @@ export const Styled = styled.div`
     font-size: 90%;
     margin-left: 20px;
   }
+
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
 `;

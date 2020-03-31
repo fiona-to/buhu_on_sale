@@ -11,6 +11,7 @@ import { inject, observer } from "mobx-react";
 -----------------------------------*/
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import IosCart from "react-ionicons/lib/IosCart";
+import MdCheckmark from "react-ionicons/lib/MdCheckmark";
 import { Styled } from "./product-detail.styles";
 /*--------------------------------------------------------
  COMPONENT: ProductDetail 
@@ -26,21 +27,42 @@ const ProductDetail = inject("store")(
       }
 
       componentDidMount() {
-        if (!this.props.GetProductById.loading) {
-          this.mapStoreToState();
-        }
+        this.setState({ quantity: this.mapStoreToState() });
       }
 
       mapStoreToState = () => {
         const { cart } = this.props.store;
-        const { productById } = this.props.GetProductById;
-        cart.products.map(item => {
-          if (item.id === productById.id) {
-            this.setState({ quantity: item.quantity });
+        let quantity = 0;
+        cart.products.forEach(item => {
+          if (item.id === this.props.match.params.id) {
+            quantity = item.quantity;
           }
         });
+        return quantity;
       };
+      // At the time componentDidMount is called
+      // may or maynot apollo fetching has NOT completed
+      // so below does not work:
+      //
+      // componentDidMount() {
+      //   if (!this.props.GetProductById.loading) {
+      //     this.mapStoreToState();
+      //   }
+      // }
 
+      // DO NOT CALL this.setState IN FOREACH LOOP
+      // mapStoreToState = () => {
+      //   const { cart } = this.props.store;
+      //   cart.products.forEach(item => {
+      //     if (item.id === this.props.GetProductById.productById.id) {
+      //       this.setState({ quantity: item.quantity });
+      //     }
+      //   });
+      // };
+
+      /*----------------------------------
+        EVENT HANDLING
+      -----------------------------------*/
       handleValueChanged = e => {
         this.setState({ [e.target.name]: e.target.value });
       };
@@ -111,14 +133,24 @@ const ProductDetail = inject("store")(
                     </Form.Group>
                   </div>
                   <div>
+                    <span className="btn-add-to-cart">
+                      <Button
+                        size="lg"
+                        variant="primary"
+                        onClick={this.onAddToCartClick}
+                        disabled={!in_stock}
+                      >
+                        <IosCart fontSize="26px" color="#bbe1fa" />
+                        <span className="add-to-cart-text">Add to Cart</span>
+                      </Button>
+                    </span>
                     <Button
                       size="lg"
                       variant="primary"
                       onClick={this.onAddToCartClick}
-                      disabled={!in_stock}
                     >
-                      <IosCart fontSize="26px" color="#bbe1fa" />
-                      <span className="add-to-cart-text">Add to Cart</span>
+                      <MdCheckmark fontSize="26px" color="#bbe1fa" />
+                      <span className="check-out">Check Out</span>
                     </Button>
                   </div>
                 </Col>

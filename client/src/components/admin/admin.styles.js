@@ -74,4 +74,10 @@ export const Styled = styled.div`
     padding-left: 0;
     padding-right: 0;
   }
+
+  .sticky-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
 `;

@@ -70,6 +70,7 @@ export const Styled = styled.div`
     color: #fff;
     font-size: 78%;
     border: none;
+    margin-top: 10px;
     transition: background-color 0.2s;
 
     &:hover {
@@ -77,7 +78,12 @@ export const Styled = styled.div`
     }
   }
 
-  .add-to-cart-text {
+  .btn-add-to-cart {
+    margin-right: 20px;
+  }
+
+  .add-to-cart-text,
+  .check-out {
     margin-left: 10px;
   }
 

@@ -16,7 +16,9 @@ const Admin = props => {
       <Container fluid>
         <Row>
           <Col xs={12} sm={12} md={3} lg={2}>
-            <Sidebar />
+            <div className="sticky-sidebar">
+              <Sidebar />
+            </div>
           </Col>
           <Col xs={12} sm={12} md={9} lg={10}>
             <Switch>

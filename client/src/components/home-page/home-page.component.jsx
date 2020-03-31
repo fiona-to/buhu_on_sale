@@ -28,7 +28,11 @@ const HomePage = props => {
   -----------------------------------*/
   return (
     <Styled>
-      {isHome ? <Header /> : null}
+      {isHome ? (
+        <div className="sticky-header">
+          <Header />
+        </div>
+      ) : null}
       {isHome ? <CarouselIntro /> : null}
       {isHome ? (
         <>
