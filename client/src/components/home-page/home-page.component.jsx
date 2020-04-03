@@ -8,6 +8,11 @@ import { Routes as HomePageRouteConfig } from "./home-page.routes";
 import CategoryPage from "../category-page/category-page.component";
 import AppBreadCrumb from "../bread-crumb/bread-crumb.component";
 import AllProductRoutes from "../product-all/product-all.routes";
+import Cart from "../cart/cart.component";
+/*----------------------------------
+   GraphQL, MobX
+-----------------------------------*/
+import { inject, observer } from "mobx-react";
 /*----------------------------------
   Styles
 -----------------------------------*/
@@ -16,51 +21,64 @@ import { Styled } from "./home-page.styles";
 /*--------------------------------------------------------
  COMPONENT: HomePage 
 --------------------------------------------------------*/
-const HomePage = props => {
-  let isHome =
-    !props.location.state ||
-    (props.location.state && props.location.state.isHome)
-      ? true
-      : false;
+const HomePage = inject("store")(
+  observer(props => {
+    // let isHome =
+    //   !props.location.state ||
+    //   (props.location.state && props.location.state.isHome)
+    //     ? true
+    //     : false;
+    // let isHome = false;
+    // let isViewCart = true;
 
-  /*----------------------------------
+    const { isHome, isViewCart, isAdmin } = props.store.uiStore;
+
+    /*----------------------------------
     RENDERING
   -----------------------------------*/
-  return (
-    <Styled>
-      {isHome ? (
+    return (
+      <Styled>
+        {isHome || isViewCart ? (
+          <div className="sticky-header">
+            <Header />
+          </div>
+        ) : null}
+        {/* {isHome ? (
         <div className="sticky-header">
           <Header />
         </div>
-      ) : null}
-      {isHome ? <CarouselIntro /> : null}
-      {isHome ? (
-        <>
-          <Breadcrumbs />
-          <hr />
-        </>
-      ) : null}
-      {isHome ? (
-        <Link className="view-all" to="/products">
-          View All Products
-        </Link>
-      ) : null}
-      <Switch>
-        <Route exact key="categoryPage" path="/" component={CategoryPage} />
-        <Route path="/products" component={AllProductRoutes} />
-        {HomePageRouteConfig.map((route, index) => (
-          <AppBreadCrumb
-            key={index}
-            exact={route.exact}
-            title={route.title}
-            path={route.path}
-            component={route.childContent}
-          />
-        ))}
-      </Switch>
-      {isHome ? <Footer /> : null}
-    </Styled>
-  );
-};
+      ) : null} */}
+        {isHome ? <CarouselIntro /> : null}
+        {isHome ? (
+          <>
+            <Breadcrumbs />
+            <hr />
+          </>
+        ) : null}
+        {isHome ? (
+          <Link className="view-all" to="/products">
+            View All Products
+          </Link>
+        ) : null}
+        <Switch>
+          <Route exact key="categoryPage" path="/" component={CategoryPage} />
+          <Route path="/products" component={AllProductRoutes} />
+          <Route path="/cart" component={Cart} />
+          {HomePageRouteConfig.map((route, index) => (
+            <AppBreadCrumb
+              key={index}
+              exact={route.exact}
+              title={route.title}
+              path={route.path}
+              component={route.childContent}
+            />
+          ))}
+        </Switch>
+        {/* {isHome ? <Footer /> : null} */}
+        {isHome || isViewCart ? <Footer /> : null}
+      </Styled>
+    );
+  })
+);
 
 export default withRouter(HomePage);

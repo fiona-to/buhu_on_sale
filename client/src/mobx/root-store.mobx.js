@@ -2,19 +2,22 @@ import { observable, decorate } from "mobx";
 import CatStore from "./cat-store.mobx";
 import ProdStore from "./prod-store.mobx";
 import Cart from "./cart.mobx";
+import GeneralUIStore from "./general-ui-store.mobx";
 
 class RootStore {
   constructor() {
     this.catStore = new CatStore();
     this.prodStore = new ProdStore();
     this.cart = new Cart();
+    this.uiStore = new GeneralUIStore();
   }
 }
 
 decorate(RootStore, {
   catStore: observable,
   prodStore: observable,
-  cart: observable
+  cart: observable,
+  uiStore: observable
 });
 
 export default RootStore;

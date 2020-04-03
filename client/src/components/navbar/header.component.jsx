@@ -15,6 +15,7 @@ import { Styled } from "./header.styles.js";
 --------------------------------------------------------*/
 export const Header = inject("store")(
   observer(props => {
+    const { uiStore } = props.store;
     const productItemCount = () => {
       const { products } = props.store.cart;
       let count = 0;
@@ -23,6 +24,21 @@ export const Header = inject("store")(
       });
       return count;
     };
+    /*----------------------------------
+      EVENT HANDLING
+    -----------------------------------*/
+    const onHomeClick = () => {
+      uiStore.visitHomePage();
+    };
+
+    const onAdminClick = () => {
+      uiStore.visitAdmin();
+    };
+
+    const onViewCartClick = () => {
+      uiStore.visitViewCart();
+    };
+
     /*----------------------------------
       RENDERING
     -----------------------------------*/
@@ -35,6 +51,7 @@ export const Header = inject("store")(
             <Nav className="mr-auto">
               <Link
                 className="nav-link"
+                onClick={onHomeClick}
                 to={{
                   pathname: "/",
                   state: {
@@ -46,6 +63,7 @@ export const Header = inject("store")(
               </Link>
               <Link
                 className="nav-link"
+                onClick={onAdminClick}
                 to={{
                   pathname: "/admin",
                   state: {
@@ -59,11 +77,9 @@ export const Header = inject("store")(
               Login
             </Link>
              */}
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" onClick={onViewCartClick} to="/cart">
                 <IosCart fontSize="26px" color="#bbe1fa" />
-
                 <Badge pill>{productItemCount()}</Badge>
-                {/* <span className="cart-text">Cart</span> */}
               </Link>
                
             </Nav>
