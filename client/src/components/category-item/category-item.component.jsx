@@ -11,10 +11,10 @@ import { Styled } from "./category-item.styles.js";
 const CategoryItem = props => {
   const handleShopNowClicked = e => {
     props.history.push({
-      pathname: props.linkTo,
-      state: {
-        isHome: true
-      }
+      pathname: props.linkTo
+      // state: {
+      //   isHome: true
+      // }
     });
   };
 

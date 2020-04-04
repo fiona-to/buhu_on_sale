@@ -7,7 +7,7 @@ export const Styled = styled.div`
 
   .grid-container {
     display: grid;
-    grid-template-columns: 80px auto 50px 50px 50px;
+    grid-template-columns: 120px auto 50px 60px 60px;
     grid-gap: 6px;
     margin-top: 20px;
   }
@@ -17,7 +17,12 @@ export const Styled = styled.div`
     //background-color: #1e88e5;
   }
 
+  .emphasise-text {
+    font-weight: bold;
+  }
+
   .check-out-total {
+    margin-top: 20px;
     font-size: 82%;
     line-height: 32px;
   }

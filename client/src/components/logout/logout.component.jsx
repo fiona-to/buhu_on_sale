@@ -18,10 +18,7 @@ const Logout = inject("store")(
     const onLogoutConfirmed = e => {
       uiStore.visitHomePage();
       props.history.push({
-        pathname: "/",
-        state: {
-          isHome: true
-        }
+        pathname: "/"
       });
     };
 

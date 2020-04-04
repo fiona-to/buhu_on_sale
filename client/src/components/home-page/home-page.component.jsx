@@ -23,14 +23,6 @@ import { Styled } from "./home-page.styles";
 --------------------------------------------------------*/
 const HomePage = inject("store")(
   observer(props => {
-    // let isHome =
-    //   !props.location.state ||
-    //   (props.location.state && props.location.state.isHome)
-    //     ? true
-    //     : false;
-    // let isHome = false;
-    // let isViewCart = true;
-
     const { isHome, isViewCart, isAdmin } = props.store.uiStore;
 
     /*----------------------------------
@@ -43,11 +35,6 @@ const HomePage = inject("store")(
             <Header />
           </div>
         ) : null}
-        {/* {isHome ? (
-        <div className="sticky-header">
-          <Header />
-        </div>
-      ) : null} */}
         {isHome ? <CarouselIntro /> : null}
         {isHome ? (
           <>
@@ -74,7 +61,6 @@ const HomePage = inject("store")(
             />
           ))}
         </Switch>
-        {/* {isHome ? <Footer /> : null} */}
         {isHome || isViewCart ? <Footer /> : null}
       </Styled>
     );

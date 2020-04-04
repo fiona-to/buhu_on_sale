@@ -40,6 +40,28 @@ class Cart {
       this.products.push(new Product({ ...product, quantity: 1 }));
     }
   }
+
+  /*----------------------------------
+    Count total items
+  -----------------------------------*/
+  countTotalItem() {
+    let count = 0;
+    this.products.forEach(item => {
+      count += item.quantity;
+    });
+    return count;
+  }
+
+  /*----------------------------------
+    Calculate total price for cart's items
+  -----------------------------------*/
+  calculateTotalPrice() {
+    let total = 0.0;
+    this.products.forEach(item => {
+      total += item.quantity * item.price;
+    });
+    return total;
+  }
 }
 
 decorate(Cart, { products: observable });
