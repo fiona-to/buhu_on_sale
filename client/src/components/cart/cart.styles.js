@@ -3,28 +3,45 @@ import styled from "styled-components";
 export const Styled = styled.div`
   .cart-item-text {
     margin-top: 20px;
+    margin-bottom: 30px;
   }
 
-  .grid-container {
+  .item-grid-container {
     display: grid;
-    grid-template-columns: 120px auto 50px 60px 60px;
+    grid-template-columns: 100px auto 60px 60px 60px;
     grid-gap: 6px;
     margin-top: 20px;
+
+    div {
+      font-size: 82%;
+    }
   }
 
-  .grid-container > div {
+  .product-link,
+  .product-link:visited {
+    color: #1b262c;
+  }
+
+  .cart-item-remove,
+  .cart-item-remove:visited {
     font-size: 82%;
-    //background-color: #1e88e5;
+    color: #1b262c;
+    float: right;
   }
 
   .emphasise-text {
     font-weight: bold;
   }
 
-  .check-out-total {
-    margin-top: 20px;
-    font-size: 82%;
-    line-height: 32px;
+  .checkout-grid-container {
+    display: grid;
+    grid-template-columns: auto 80px;
+    grid-gap: 6px;
+    margin-top: 30px;
+
+    div {
+      font-size: 82%;
+    }
   }
 
   .btn {
@@ -32,7 +49,7 @@ export const Styled = styled.div`
     color: #fff;
     font-size: 78%;
     border: none;
-    margin-top: 10px;
+    margin-top: 20px;
     transition: background-color 0.2s;
 
     .check-out {

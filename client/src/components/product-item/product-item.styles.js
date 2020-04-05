@@ -34,8 +34,8 @@ export const Styled = styled.div`
       .add-cart {
         background-color: #0f4c75;
         color: #fff;
-        margin: 5px;
-        padding: 3px;
+        margin: 12px;
+        padding: 10px;
         text-align: center;
         border-radius: 5px;
         text-transform: uppercase;
@@ -44,10 +44,22 @@ export const Styled = styled.div`
           cursor: pointer;
         }
       }
+
+      .disabled-add-cart {
+        background-color: #0f4c75;
+        color: #fff;
+        margin: 12px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        text-transform: uppercase;
+        pointer-events: none;
+        opacity: 0.5;
+      }
     }
 
     &:hover .card-img-top {
-      opacity: 0.3;
+      opacity: 0.1;
     }
 
     &:hover .btn-container {

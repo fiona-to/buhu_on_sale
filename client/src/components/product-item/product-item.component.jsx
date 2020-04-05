@@ -14,18 +14,21 @@ import { Styled } from "../product-item/product-item.styles";
  COMPONENT: ProductItem 
 --------------------------------------------------------*/
 const ProductItem = inject("store")(
-  observer(props => {
-    const { id, image_url, name, pricing } = props.item;
+  observer((props) => {
+    const { id, image_url, name, pricing, in_stock } = props.item;
 
     const isAllProductPage = props.isAllProductPage ? true : false;
+    /*----------------------------------
+      EVENT HANDLING
+    -----------------------------------*/
     const handleDetailClick = () => {
       props.history.push({
         pathname: isAllProductPage
           ? `/products/${id}`
           : `${props.match.url}/product/${id}`,
         state: {
-          isHome: true
-        }
+          isHome: true,
+        },
       });
     };
 
@@ -45,7 +48,10 @@ const ProductItem = inject("store")(
               <div className="detail" onClick={handleDetailClick}>
                 Details
               </div>
-              <div className="add-cart" onClick={handleAddToCart}>
+              <div
+                className={in_stock > 0 ? "add-cart" : "disabled-add-cart"}
+                onClick={handleAddToCart}
+              >
                 Add to cart
               </div>
             </div>

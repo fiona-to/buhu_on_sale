@@ -22,7 +22,7 @@ const ProductDetail = inject("store")(
       constructor(props) {
         super(props);
         this.state = {
-          quantity: 0
+          quantity: 0,
         };
       }
 
@@ -33,7 +33,7 @@ const ProductDetail = inject("store")(
       mapStoreToState = () => {
         const { cart } = this.props.store;
         let quantity = 0;
-        cart.products.forEach(item => {
+        cart.products.forEach((item) => {
           if (item.id === this.props.match.params.id) {
             quantity = item.quantity;
           }
@@ -63,14 +63,20 @@ const ProductDetail = inject("store")(
       /*----------------------------------
         EVENT HANDLING
       -----------------------------------*/
-      handleValueChanged = e => {
+      handleValueChanged = (e) => {
         this.setState({ [e.target.name]: e.target.value });
       };
 
-      onAddToCartClick = e => {
+      onAddToCartClick = (e) => {
         const quantity = parseInt(this.state.quantity);
         const { id, name, image_url } = this.props.GetProductById.productById;
         this.props.store.cart.addToCart({ id, name, image_url, quantity });
+      };
+
+      onCheckOutClick = (e) => {
+        const { uiStore } = this.props.store;
+        uiStore.visitViewCart();
+        this.props.history.push("/cart");
       };
 
       displayDetail = () => {
@@ -80,9 +86,11 @@ const ProductDetail = inject("store")(
             description,
             image_url,
             // pricing: { sale_price },
-            in_stock
+            in_stock,
             //manufacture_detail: { model_number }
           } = this.props.GetProductById.productById;
+
+          const { cart } = this.props.store;
 
           return (
             <>
@@ -126,6 +134,7 @@ const ProductDetail = inject("store")(
                           name="quantity"
                           size="sm"
                           required
+                          disabled={!in_stock}
                           value={this.state.quantity}
                           onChange={this.handleValueChanged}
                         />
@@ -147,7 +156,8 @@ const ProductDetail = inject("store")(
                     <Button
                       size="lg"
                       variant="primary"
-                      onClick={this.onAddToCartClick}
+                      disabled={!cart.countTotalItem()}
+                      onClick={this.onCheckOutClick}
                     >
                       <MdCheckmark fontSize="26px" color="#bbe1fa" />
                       <span className="check-out">Check Out</span>
@@ -196,6 +206,6 @@ const ProductDetail = inject("store")(
 export default withRouter(
   graphql(getProductById, {
     name: "GetProductById",
-    options: props => ({ variables: { id: props.match.params.id } })
+    options: (props) => ({ variables: { id: props.match.params.id } }),
   })(ProductDetail)
 );
