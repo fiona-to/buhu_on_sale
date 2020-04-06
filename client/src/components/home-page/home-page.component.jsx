@@ -22,8 +22,8 @@ import { Styled } from "./home-page.styles";
  COMPONENT: HomePage 
 --------------------------------------------------------*/
 const HomePage = inject("store")(
-  observer(props => {
-    const { isHome, isViewCart, isAdmin } = props.store.uiStore;
+  observer((props) => {
+    const { isHome, isViewCart } = props.store.uiStore;
 
     /*----------------------------------
     RENDERING

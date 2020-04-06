@@ -1,32 +1,13 @@
 import styled from "styled-components";
 
 export const Styled = styled.div`
-  .cart-item-text {
+  .cart-header-text {
     margin-top: 20px;
     margin-bottom: 30px;
   }
 
-  .item-grid-container {
-    display: grid;
-    grid-template-columns: 100px auto 60px 60px 60px;
-    grid-gap: 6px;
-    margin-top: 20px;
-
-    div {
-      font-size: 82%;
-    }
-  }
-
-  .product-link,
-  .product-link:visited {
-    color: #1b262c;
-  }
-
-  .cart-item-remove,
-  .cart-item-remove:visited {
-    font-size: 82%;
-    color: #1b262c;
-    float: right;
+  .right-align {
+    text-align: right;
   }
 
   .emphasise-text {

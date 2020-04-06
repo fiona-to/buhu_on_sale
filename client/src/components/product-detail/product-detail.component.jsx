@@ -22,7 +22,7 @@ const ProductDetail = inject("store")(
       constructor(props) {
         super(props);
         this.state = {
-          quantity: 0,
+          quantity: 1,
         };
       }
 
@@ -32,7 +32,7 @@ const ProductDetail = inject("store")(
 
       mapStoreToState = () => {
         const { cart } = this.props.store;
-        let quantity = 0;
+        let quantity = 1;
         cart.products.forEach((item) => {
           if (item.id === this.props.match.params.id) {
             quantity = item.quantity;
@@ -123,21 +123,26 @@ const ProductDetail = inject("store")(
                       </div>
                     )}
 
-                    <Form.Group as={Row} controlId="formPlaintextPassword">
+                    <Form.Group as={Row} controlId="quantity">
                       <Form.Label column sm="2">
                         Qty:
                       </Form.Label>
                       <Col sm="6">
                         <Form.Control
                           className="quantity"
-                          type="number"
-                          name="quantity"
+                          as="select"
                           size="sm"
-                          required
+                          name="quantity"
                           disabled={!in_stock}
                           value={this.state.quantity}
                           onChange={this.handleValueChanged}
-                        />
+                        >
+                          <option defaultValue>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </Form.Control>
                       </Col>
                     </Form.Group>
                   </div>

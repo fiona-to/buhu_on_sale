@@ -12,7 +12,7 @@ class Cart {
   -----------------------------------*/
   addToCart(product) {
     let existed = false;
-    this.products.forEach(item => {
+    this.products.forEach((item) => {
       if (item.id === product.id) {
         item.quantity = product.quantity;
         existed = true;
@@ -29,7 +29,7 @@ class Cart {
   -----------------------------------*/
   addOneToCart(product) {
     let existed = false;
-    this.products.forEach(item => {
+    this.products.forEach((item) => {
       if (item.id === product.id) {
         item.quantity += 1;
         existed = true;
@@ -46,7 +46,7 @@ class Cart {
   -----------------------------------*/
   countTotalItem() {
     let count = 0;
-    this.products.forEach(item => {
+    this.products.forEach((item) => {
       count += item.quantity;
     });
     return count;
@@ -57,10 +57,30 @@ class Cart {
   -----------------------------------*/
   calculateTotalPrice() {
     let total = 0.0;
-    this.products.forEach(item => {
+    this.products.forEach((item) => {
       total += item.quantity * item.price;
     });
     return total;
+  }
+
+  /*----------------------------------
+    Remove product out of cart by ID
+  -----------------------------------*/
+  removeProductById(id) {
+    this.products = this.products.filter((item) => {
+      return item.id !== id;
+    });
+  }
+
+  /*----------------------------------
+    Update product's quantity based on ID
+  -----------------------------------*/
+  updateQuantityById(id, quantity) {
+    this.products.forEach((item) => {
+      if (item.id === id) {
+        item.quantity = quantity;
+      }
+    });
   }
 }
 
