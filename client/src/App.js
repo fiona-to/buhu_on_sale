@@ -27,37 +27,35 @@ const App = () => {
   const cache = new InMemoryCache();
   //persistCache({ cache, storage: window.localStorage });
   const link = createUploadLink({
-    uri: "/graphql"
+    uri: "/graphql",
   });
   const client = new ApolloClient({
     link,
-    cache
+    cache,
   });
 
   /*----------------------------
     Rendering
   ----------------------------*/
   return (
-    <div className="App">
-      <ApolloProvider client={client}>
-        <MobXProvider store={store}>
-          <Router>
-            <AppBreadCrumb
-              title={
-                <>
-                  <span className="home-icon">
-                    <IosHome fontSize="24px" color="#0f4c75" />
-                  </span>
-                  Home
-                </>
-              }
-              path="/"
-              component={HomePage}
-            />
-          </Router>
-        </MobXProvider>
-      </ApolloProvider>
-    </div>
+    <ApolloProvider client={client}>
+      <MobXProvider store={store}>
+        <Router>
+          <AppBreadCrumb
+            title={
+              <>
+                <span className="home-icon">
+                  <IosHome fontSize="24px" color="#0f4c75" />
+                </span>
+                Home
+              </>
+            }
+            path="/"
+            component={HomePage}
+          />
+        </Router>
+      </MobXProvider>
+    </ApolloProvider>
   );
 };
 

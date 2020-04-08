@@ -22,7 +22,7 @@ const ProductDetail = inject("store")(
       constructor(props) {
         super(props);
         this.state = {
-          quantity: 1,
+          quantity: 0,
         };
       }
 
@@ -32,7 +32,7 @@ const ProductDetail = inject("store")(
 
       mapStoreToState = () => {
         const { cart } = this.props.store;
-        let quantity = 1;
+        let quantity = 0;
         cart.products.forEach((item) => {
           if (item.id === this.props.match.params.id) {
             quantity = item.quantity;
@@ -69,8 +69,10 @@ const ProductDetail = inject("store")(
 
       onAddToCartClick = (e) => {
         const quantity = parseInt(this.state.quantity);
-        const { id, name, image_url } = this.props.GetProductById.productById;
-        this.props.store.cart.addToCart({ id, name, image_url, quantity });
+        if (quantity > 0) {
+          const { id, name, image_url } = this.props.GetProductById.productById;
+          this.props.store.cart.addToCart({ id, name, image_url, quantity });
+        }
       };
 
       onCheckOutClick = (e) => {
@@ -137,7 +139,8 @@ const ProductDetail = inject("store")(
                           value={this.state.quantity}
                           onChange={this.handleValueChanged}
                         >
-                          <option defaultValue>1</option>
+                          <option defaultValue>0</option>
+                          <option>1</option>
                           <option>2</option>
                           <option>3</option>
                           <option>4</option>

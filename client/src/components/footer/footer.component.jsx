@@ -5,11 +5,7 @@ import { Styled } from "./footer.styles";
 export const Footer = () => {
   return (
     <Styled>
-      <Row>
-        <Col>
-          <p>Copyright &copy; BuHu Website 2020</p>
-        </Col>
-      </Row>
+      <div className="footer">Copyright &copy; BuHu Website 2020</div>
     </Styled>
   );
 };

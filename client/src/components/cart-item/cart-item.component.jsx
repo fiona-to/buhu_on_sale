@@ -33,7 +33,6 @@ const CartItem = inject("store")(
     };
 
     const onQuantityChange = (e) => {
-      console.log(e.target.name);
       cart.updateQuantityById(e.target.name, parseInt(e.target.value));
       setQuantity(e.target.value);
     };

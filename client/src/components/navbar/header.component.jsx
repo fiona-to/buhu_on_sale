@@ -14,7 +14,7 @@ import { Styled } from "./header.styles.js";
  COMPONENT: Header 
 --------------------------------------------------------*/
 export const Header = inject("store")(
-  observer(props => {
+  observer((props) => {
     const { uiStore, cart } = props.store;
     /*----------------------------------
       EVENT HANDLING
@@ -45,7 +45,7 @@ export const Header = inject("store")(
                 className="nav-link"
                 onClick={onHomeClick}
                 to={{
-                  pathname: "/"
+                  pathname: "/",
                   // state: {
                   //   isHome: true
                   // }
@@ -57,7 +57,7 @@ export const Header = inject("store")(
                 className="nav-link"
                 onClick={onAdminClick}
                 to={{
-                  pathname: "/admin"
+                  pathname: "/admin",
                 }}
               >
                 Admin
@@ -79,7 +79,7 @@ export const Header = inject("store")(
                 placeholder="My favorite"
                 className="mr-sm-2"
               />
-              <Button size="sm" variant="outline-success">
+              <Button size="sm" variant="outline-success" disabled>
                 Search
               </Button>
             </Form>
