@@ -15,7 +15,7 @@ import { Styled } from "../product-item/product-item.styles";
 --------------------------------------------------------*/
 const ProductItem = inject("store")(
   observer((props) => {
-    const { id, image_url, name, pricing, in_stock } = props.item;
+    const { id, image_url, name, in_stock, price } = props.item;
 
     const isAllProductPage = props.isAllProductPage ? true : false;
     /*----------------------------------
@@ -33,7 +33,7 @@ const ProductItem = inject("store")(
     };
 
     const handleAddToCart = () => {
-      props.store.cart.addOneToCart({ id, name, image_url });
+      props.store.cart.addOneToCart({ id, name, image_url, price });
     };
 
     /*----------------------------------
@@ -58,9 +58,7 @@ const ProductItem = inject("store")(
           </div>
           <div className="txt-container">
             <div className="title">{name}</div>
-            <div className="price">
-              {pricing ? `$ ${pricing.sale_price}` : "Call us"}
-            </div>
+            <div className="price">{`$${price}`}</div>
           </div>
         </Card>
       </Styled>

@@ -24,6 +24,7 @@ const getProducts = gql`
       category {
         name
       }
+      price
     }
   }
 `;
@@ -51,6 +52,7 @@ const getProductById = gql`
       category {
         name
       }
+      price
     }
   }
 `;
@@ -82,6 +84,7 @@ const getProductByCategory = gql`
         image_public_id
         hidden
       }
+      price
     }
   }
 `;
@@ -101,6 +104,7 @@ const addProduct = gql`
     $in_stock: Int!
     $photo: Upload
     $categoryId: String!
+    $price: Float!
   ) {
     addProduct(
       name: $name
@@ -108,6 +112,7 @@ const addProduct = gql`
       in_stock: $in_stock
       photo: $photo
       categoryId: $categoryId
+      price: $price
     ) {
       id
       name
@@ -128,6 +133,7 @@ const addProduct = gql`
       category {
         name
       }
+      price
     }
   }
 `;
@@ -142,6 +148,7 @@ const updateProductById = gql`
     $image_public_id: String
     $photo: Upload
     $categoryId: String!
+    $price: Float!
   ) {
     updateProductById(
       id: $id
@@ -152,6 +159,7 @@ const updateProductById = gql`
       image_public_id: $image_public_id
       photo: $photo
       categoryId: $categoryId
+      price: $price
     ) {
       id
       name
@@ -172,6 +180,7 @@ const updateProductById = gql`
       category {
         name
       }
+      price
     }
   }
 `;
@@ -182,5 +191,5 @@ export {
   getProductByCategory,
   deleteProductById,
   addProduct,
-  updateProductById
+  updateProductById,
 };

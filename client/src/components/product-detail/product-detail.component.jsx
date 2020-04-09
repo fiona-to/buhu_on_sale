@@ -70,8 +70,19 @@ const ProductDetail = inject("store")(
       onAddToCartClick = (e) => {
         const quantity = parseInt(this.state.quantity);
         if (quantity > 0) {
-          const { id, name, image_url } = this.props.GetProductById.productById;
-          this.props.store.cart.addToCart({ id, name, image_url, quantity });
+          const {
+            id,
+            name,
+            image_url,
+            price,
+          } = this.props.GetProductById.productById;
+          this.props.store.cart.addToCart({
+            id,
+            name,
+            image_url,
+            price,
+            quantity,
+          });
         }
       };
 
@@ -87,8 +98,8 @@ const ProductDetail = inject("store")(
             name,
             description,
             image_url,
-            // pricing: { sale_price },
             in_stock,
+            price,
             //manufacture_detail: { model_number }
           } = this.props.GetProductById.productById;
 
@@ -106,8 +117,7 @@ const ProductDetail = inject("store")(
                   <h3 className="product-name">{name}</h3>
                   <div className="product-summary">
                     <div>
-                      {/* Retail price: {sale_price ? `$ ${sale_price}` : "Please call"} */}
-                      Retail price: $ 128.00
+                      Price: <span className="retail-price">{`$${price}`}</span>
                     </div>
                     <div>Color: TBD</div>
                     <div>Condition: TBD - Like new</div>

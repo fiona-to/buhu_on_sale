@@ -10,14 +10,15 @@ import { Styled } from "./product-input-view.styles";
 /*--------------------------------------------------------
  COMPONENT: ProductInputView
 --------------------------------------------------------*/
-const ProductInputView = props => {
+const ProductInputView = (props) => {
   const {
     id,
     name,
     description,
     in_stock,
     image_url,
-    category
+    category,
+    price,
   } = props.selectedProd;
 
   return (
@@ -44,6 +45,13 @@ const ProductInputView = props => {
                 label="In Stock"
                 name="in_stock"
                 value={in_stock}
+                disabled={true}
+                className="disable-control"
+              />
+              <InputField
+                label="Retail Price In $ "
+                name="price"
+                value={price}
                 disabled={true}
                 className="disable-control"
               />

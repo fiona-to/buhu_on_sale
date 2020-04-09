@@ -13,7 +13,7 @@ import compose from "lodash.flowright";
 import {
   addProduct,
   getProducts,
-  updateProductById
+  updateProductById,
 } from "../../graphql-queries/product.graphql";
 import { getCategories } from "../../graphql-queries/category.graphql";
 /*----------------------------------
@@ -46,7 +46,8 @@ const ProductInputForm = inject("store")(
           isLoading: false,
           photo: null,
           displayedImageOnUi: "",
-          existedProd: false
+          existedProd: false,
+          price: 0,
         };
       }
 
@@ -55,7 +56,7 @@ const ProductInputForm = inject("store")(
           this.setState({
             ...this.props.selectedProd,
             displayedImageOnUi: this.props.selectedProd.image_url,
-            existedProd: true
+            existedProd: true,
           });
         }
       }
@@ -63,7 +64,7 @@ const ProductInputForm = inject("store")(
       /*----------------------------------
       Ant Design
       -----------------------------------*/
-      handleUploadImage = info => {
+      handleUploadImage = (info) => {
         if (info.file.status === "uploading") {
           this.setState({ isLoading: true });
           return;
@@ -72,14 +73,14 @@ const ProductInputForm = inject("store")(
           AntMessage.success(`${info.file.name} file uploaded successfully`);
           // Save uploaded photo to component's state
           this.setState({
-            photo: info.file.originFileObj
+            photo: info.file.originFileObj,
           });
 
           // Get this url from response in real world.
-          getBase64(info.file.originFileObj, imageUrl =>
+          getBase64(info.file.originFileObj, (imageUrl) =>
             this.setState({
               displayedImageOnUi: imageUrl,
-              isLoading: false
+              isLoading: false,
             })
           );
         } else if (info.file.status === "error") {
@@ -102,12 +103,13 @@ const ProductInputForm = inject("store")(
           isLoading: false,
           photo: null,
           displayedImageOnUi: "",
-          existedProd: false
+          existedProd: false,
+          price: 0,
         });
       };
 
-      loadCategoryOptions = data => {
-        return data.map(item => {
+      loadCategoryOptions = (data) => {
+        return data.map((item) => {
           return (
             <option key={item.id} value={item.id}>
               {item.name}
@@ -116,7 +118,7 @@ const ProductInputForm = inject("store")(
         });
       };
 
-      handleValueChanged = e => {
+      handleValueChanged = (e) => {
         this.setState({ [e.target.name]: e.target.value });
       };
 
@@ -128,19 +130,20 @@ const ProductInputForm = inject("store")(
               description: this.state.description,
               photo: this.state.photo,
               in_stock: parseInt(this.state.in_stock),
-              categoryId: this.state.categoryId
+              categoryId: this.state.categoryId,
+              price: parseFloat(this.state.price),
             },
             refetchQueries: [
               {
-                query: getProducts
-              }
-            ]
+                query: getProducts,
+              },
+            ],
           })
-          .then(data => {
+          .then((data) => {
             this.resetLocalState();
             this.props.store.prodStore.cancelAddNewProduct();
           })
-          .catch(e => {
+          .catch((e) => {
             console.log(e);
             return;
           });
@@ -157,27 +160,28 @@ const ProductInputForm = inject("store")(
               image_url: this.state.image_url,
               image_public_id: this.state.image_public_id,
               photo: this.state.photo,
-              categoryId: this.state.categoryId
+              categoryId: this.state.categoryId,
+              price: parseFloat(this.state.price),
             },
-            refetchQueries: [{ query: getProducts }]
+            refetchQueries: [{ query: getProducts }],
           })
-          .then(data => {
+          .then((data) => {
             this.resetLocalState();
             this.props.store.prodStore.cancelEditProduct();
           })
-          .catch(e => {
+          .catch((e) => {
             console.log(e);
             return;
           });
       };
 
-      handleCancelProduct = e => {
+      handleCancelProduct = (e) => {
         if (this.state.existedProd) {
           this.props.store.prodStore.cancelEditProduct();
         } else this.props.store.prodStore.cancelAddNewProduct();
       };
 
-      handleFormSubmit = e => {
+      handleFormSubmit = (e) => {
         e.preventDefault();
         if (this.state.existedProd) {
           this.updateProduct();
@@ -225,6 +229,13 @@ const ProductInputForm = inject("store")(
                       name="in_stock"
                       type="number"
                       value={this.state.in_stock}
+                      onChange={this.handleValueChanged}
+                    />
+                    <InputField
+                      label="Retail Price In $"
+                      name="price"
+                      type="number"
+                      value={this.state.price}
                       onChange={this.handleValueChanged}
                     />
                   </Form.Group>

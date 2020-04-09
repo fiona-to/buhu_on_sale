@@ -22,17 +22,17 @@ const Cart = inject("store")(
     const displayCheckOut = ({ cart, totalItems }) => {
       const totalPrice = cart.calculateTotalPrice();
       const taxAndFee = (totalPrice * 7) / 100;
-      const deliveryFee = 20;
+      const deliveryFee = 8;
       const payment = totalPrice + taxAndFee + deliveryFee;
       return (
         <div key="price-and-payment">
           <div className="checkout-grid-container">
             <div>Subtotal ({totalItems} items)</div>
-            <div className="right-align">${totalPrice}</div>
+            <div className="right-align">${totalPrice.toFixed(2)}</div>
           </div>
           <div className="checkout-grid-container">
             <div>Est. taxes & fees (7%)</div>
-            <div className="right-align">${taxAndFee}</div>
+            <div className="right-align">${taxAndFee.toFixed(2)}</div>
           </div>
           <div className="checkout-grid-container">
             <div>Delivery fees</div>
@@ -41,7 +41,9 @@ const Cart = inject("store")(
           <hr />
           <div className="checkout-grid-container">
             <div>Est. total</div>
-            <div className="emphasise-text right-align">${payment}</div>
+            <div className="emphasise-text right-align">
+              ${payment.toFixed(2)}
+            </div>
           </div>
           <Button size="lg" variant="primary">
             <IosCard fontSize="26px" color="#bbe1fa" />

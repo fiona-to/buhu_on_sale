@@ -40,6 +40,11 @@ export const Styled = styled.div`
       }
     }
 
+    .retail-price {
+      font-size: 130%;
+      font-weight: bold;
+    }
+
     .in-stock {
       background-color: #46a74e;
       color: #fff;

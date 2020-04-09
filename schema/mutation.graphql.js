@@ -5,7 +5,8 @@ const {
   GraphQLID,
   GraphQLString,
   GraphQLInt,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLFloat,
 } = graphql;
 const { GraphQLUpload } = require("graphql-upload");
 const { ProductType, CategoryType } = require("./object-types.graphql");
@@ -16,7 +17,7 @@ const Category = require("../models/category");
 ----------------------------*/
 const {
   cloudinary,
-  uploadStreamToCloudinary
+  uploadStreamToCloudinary,
 } = require("../cloudinary/utils.cloudinary");
 /*--------------------------------------------------------
     MUTATION
@@ -31,7 +32,7 @@ const MutationType = new GraphQLObjectType({
         description: { type: new GraphQLNonNull(GraphQLString) },
         hidden: { type: GraphQLBoolean },
         // GraphQLUpload is a type from middleware 'graphql-upload'
-        photo: { type: GraphQLUpload }
+        photo: { type: GraphQLUpload },
       },
       async resolve(parent, args) {
         let imgUrl = "",
@@ -56,7 +57,7 @@ const MutationType = new GraphQLObjectType({
           description: args.description,
           image_url: imgUrl,
           image_public_id: imgPublicId,
-          hidden: args.hidden
+          hidden: args.hidden,
         });
 
         // await newCategory.save((err, category) => {
@@ -67,7 +68,7 @@ const MutationType = new GraphQLObjectType({
         //   }
         // });
         return await newCategory.save();
-      }
+      },
     },
     updateCategoryById: {
       type: CategoryType,
@@ -78,7 +79,7 @@ const MutationType = new GraphQLObjectType({
         hidden: { type: GraphQLBoolean },
         image_url: { type: GraphQLString },
         image_public_id: { type: GraphQLString },
-        photo: { type: GraphQLUpload }
+        photo: { type: GraphQLUpload },
       },
       async resolve(parent, args) {
         let imageUrl = args.image_url;
@@ -119,7 +120,7 @@ const MutationType = new GraphQLObjectType({
             description: args.description,
             hidden: args.hidden,
             image_url: imageUrl,
-            image_public_id: imagePublicId
+            image_public_id: imagePublicId,
           },
           // DeprecationWarning: Mongoose: `findOneAndUpdate()`
           // and `findOneAndDelete()` without the `useFindAndModify`
@@ -131,13 +132,13 @@ const MutationType = new GraphQLObjectType({
             }
           }
         );
-      }
+      },
     },
     deleteCategoryById: {
       type: CategoryType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
-        imgPublicId: { type: GraphQLString }
+        imgPublicId: { type: GraphQLString },
       },
       async resolve(parent, args) {
         if (args.imgPublicId !== "") {
@@ -150,13 +151,13 @@ const MutationType = new GraphQLObjectType({
           });
         }
         await Category.deleteOne({ _id: args.id })
-          .then(data => ({
-            message: "Category was deleted"
+          .then((data) => ({
+            message: "Category was deleted",
           }))
-          .catch(error => ({
-            message: error.message
+          .catch((error) => ({
+            message: error.message,
           }));
-      }
+      },
     },
     addProduct: {
       type: ProductType,
@@ -166,7 +167,8 @@ const MutationType = new GraphQLObjectType({
         in_stock: { type: new GraphQLNonNull(GraphQLInt) },
         // GraphQLUpload is a type from middleware 'graphql-upload'
         photo: { type: GraphQLUpload },
-        categoryId: { type: new GraphQLNonNull(GraphQLString) }
+        categoryId: { type: new GraphQLNonNull(GraphQLString) },
+        price: { type: new GraphQLNonNull(GraphQLFloat) },
         // manufacture_detail: { type: ManufactureInputType },
         // pricing: { type: PricingInputType },
         // seo: { type: new GraphQLList(GraphQLString) }
@@ -194,10 +196,11 @@ const MutationType = new GraphQLObjectType({
           in_stock: args.in_stock,
           image_url: imgUrl,
           image_public_id: imgPublicId,
-          categoryId: args.categoryId
+          categoryId: args.categoryId,
+          price: args.price,
         });
         return await newProduct.save();
-      }
+      },
     },
     updateProductById: {
       type: ProductType,
@@ -209,7 +212,8 @@ const MutationType = new GraphQLObjectType({
         image_url: { type: GraphQLString },
         image_public_id: { type: GraphQLString },
         photo: { type: GraphQLUpload },
-        categoryId: { type: new GraphQLNonNull(GraphQLString) }
+        categoryId: { type: new GraphQLNonNull(GraphQLString) },
+        price: { type: new GraphQLNonNull(GraphQLFloat) },
         // manufacture_detail: { type: ManufactureInputType },
         // pricing: { type: PricingInputType },
         // seo: { type: new GraphQLList(GraphQLString) }
@@ -217,7 +221,6 @@ const MutationType = new GraphQLObjectType({
       async resolve(parent, args) {
         let imageUrl = args.image_url;
         let imagePublicId = args.image_public_id;
-        console.log(process.env.CLOUDINARY_NAME);
         // Proceed if uploading a new photo
         if (args.photo) {
           const { filename, mimetype, createReadStream } = await args.photo;
@@ -253,7 +256,8 @@ const MutationType = new GraphQLObjectType({
             in_stock: args.in_stock,
             image_url: imageUrl,
             image_public_id: imagePublicId,
-            categoryId: args.categoryId
+            categoryId: args.categoryId,
+            price: args.price,
             // manufacture_detail: args.manufacture_detail,
             // pricing: args.pricing,
             // seo: args.seo
@@ -268,13 +272,13 @@ const MutationType = new GraphQLObjectType({
             }
           }
         );
-      }
+      },
     },
     deleteProductById: {
       type: ProductType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
-        imgPublicId: { type: GraphQLString }
+        imgPublicId: { type: GraphQLString },
       },
       async resolve(parent, args) {
         if (args.imgPublicId !== "") {
@@ -288,15 +292,15 @@ const MutationType = new GraphQLObjectType({
         }
 
         await Product.deleteOne({ _id: args.id })
-          .then(data => ({
-            message: "Product was deleted"
+          .then((data) => ({
+            message: "Product was deleted",
           }))
-          .catch(error => ({
-            message: error.message
+          .catch((error) => ({
+            message: error.message,
           }));
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 module.exports = MutationType;

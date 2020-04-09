@@ -9,7 +9,7 @@ const {
   GraphQLInt,
   GraphQLInputObjectType,
   GraphQLFloat,
-  GraphQLBoolean
+  GraphQLBoolean,
 } = graphql;
 const Category = require("../models/category");
 const Product = require("../models/product");
@@ -20,8 +20,8 @@ const ManufactureType = new GraphQLObjectType({
   name: "ManufactureType",
   fields: () => ({
     model_number: { type: GraphQLString },
-    release_date: { type: GraphQLString }
-  })
+    release_date: { type: GraphQLString },
+  }),
 });
 
 /*----------------------------
@@ -31,8 +31,8 @@ const ManufactureInputType = new GraphQLInputObjectType({
   name: "ManufactureInputType",
   fields: () => ({
     model_number: { type: GraphQLString },
-    release_date: { type: GraphQLString }
-  })
+    release_date: { type: GraphQLString },
+  }),
 });
 
 /*----------------------------
@@ -42,8 +42,8 @@ const PricingType = new GraphQLObjectType({
   name: "PricingType",
   fields: () => ({
     unit_price: { type: GraphQLFloat },
-    sale_price: { type: GraphQLFloat }
-  })
+    sale_price: { type: GraphQLFloat },
+  }),
 });
 
 /*----------------------------
@@ -53,8 +53,8 @@ const PricingInputType = new GraphQLInputObjectType({
   name: "PricingInputType",
   fields: () => ({
     unit_price: { type: GraphQLFloat },
-    sale_price: { type: GraphQLFloat }
-  })
+    sale_price: { type: GraphQLFloat },
+  }),
 });
 
 /*----------------------------
@@ -64,8 +64,8 @@ const CategoryProductStatsType = new GraphQLObjectType({
   name: "CategoryProductStatsType",
   fields: () => ({
     count: { type: GraphQLInt },
-    products: { type: new GraphQLList(ProductType) }
-  })
+    products: { type: new GraphQLList(ProductType) },
+  }),
 });
 
 /*----------------------------
@@ -90,9 +90,10 @@ const ProductType = new GraphQLObjectType({
       type: CategoryType,
       resolve(parent, args) {
         return Category.findById(parent.categoryId);
-      }
-    }
-  })
+      },
+    },
+    price: { type: GraphQLFloat },
+  }),
 });
 
 /*----------------------------
@@ -115,11 +116,11 @@ const CategoryType = new GraphQLObjectType({
         results = await Product.find({ categoryId: parent.id });
         return {
           count: results.length,
-          products: results
+          products: results,
         };
-      }
-    }
-  })
+      },
+    },
+  }),
 });
 
 module.exports = {
@@ -128,5 +129,5 @@ module.exports = {
   PricingType,
   PricingInputType,
   ProductType,
-  CategoryType
+  CategoryType,
 };

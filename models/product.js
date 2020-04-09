@@ -3,12 +3,12 @@ const Scheme = mongoose.Schema;
 
 const schemaManufactureDetail = new Scheme({
   model_number: String,
-  release_date: Date
+  release_date: Date,
 });
 
 const schemaPricing = new Scheme({
   unit_price: Number,
-  sale_price: Number
+  sale_price: Number,
 });
 
 const schemaProduct = new Scheme({
@@ -21,7 +21,8 @@ const schemaProduct = new Scheme({
   pricing: schemaPricing,
   seo: [],
   sold: Number,
-  categoryId: String
+  categoryId: String,
+  price: Number,
 });
 
 module.exports = mongoose.model("product", schemaProduct);
