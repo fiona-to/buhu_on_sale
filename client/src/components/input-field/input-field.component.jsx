@@ -8,9 +8,10 @@ import { Styled } from "./input-field.styles";
 /*--------------------------------------------------------
  COMPONENT: InputField
 --------------------------------------------------------*/
-const InputField = props => {
+const InputField = (props) => {
   const { label, name, value } = props;
   const disabled = props.disabled ? true : false;
+  const required = props.required ? props.required : true;
   const type = props.type ? props.type : "text";
   const className = props.className ? props.className : "";
   const onChange = props.onChange ? props.onChange : null;
@@ -27,7 +28,7 @@ const InputField = props => {
         type={type}
         name={name}
         size="sm"
-        required
+        required={required}
         disabled={disabled}
         placeholder={label}
         value={value}

@@ -48,6 +48,9 @@ const ProductInputForm = inject("store")(
           displayedImageOnUi: "",
           existedProd: false,
           price: 0,
+          color: "",
+          hex_color: "",
+          condition: "",
         };
       }
 
@@ -105,6 +108,9 @@ const ProductInputForm = inject("store")(
           displayedImageOnUi: "",
           existedProd: false,
           price: 0,
+          color: "",
+          hex_color: "",
+          condition: "",
         });
       };
 
@@ -122,6 +128,15 @@ const ProductInputForm = inject("store")(
         this.setState({ [e.target.name]: e.target.value });
       };
 
+      // handleColorValueChanged = (e) => {
+      //   this.setState({
+      //     color: {
+      //       ...this.state.color,
+      //       [e.target.name]: e.target.value,
+      //     },
+      //   });
+      // };
+
       saveProduct = async () => {
         await this.props
           .AddProduct({
@@ -132,6 +147,9 @@ const ProductInputForm = inject("store")(
               in_stock: parseInt(this.state.in_stock),
               categoryId: this.state.categoryId,
               price: parseFloat(this.state.price),
+              color: this.state.color,
+              hex_color: this.state.hex_color,
+              condition: this.state.condition,
             },
             refetchQueries: [
               {
@@ -162,6 +180,9 @@ const ProductInputForm = inject("store")(
               photo: this.state.photo,
               categoryId: this.state.categoryId,
               price: parseFloat(this.state.price),
+              color: this.state.color,
+              hex_color: this.state.hex_color,
+              condition: this.state.condition,
             },
             refetchQueries: [{ query: getProducts }],
           })
@@ -218,12 +239,6 @@ const ProductInputForm = inject("store")(
                       value={this.state.name}
                       onChange={this.handleValueChanged}
                     />
-                    <TextareaInputField
-                      label="Description"
-                      name="description"
-                      value={this.state.description}
-                      onChange={this.handleValueChanged}
-                    />
                     <InputField
                       label="In Stock"
                       name="in_stock"
@@ -236,6 +251,18 @@ const ProductInputForm = inject("store")(
                       name="price"
                       type="number"
                       value={this.state.price}
+                      onChange={this.handleValueChanged}
+                    />
+                    <InputField
+                      label="Condition"
+                      name="condition"
+                      value={this.state.condition}
+                      onChange={this.handleValueChanged}
+                    />
+                    <TextareaInputField
+                      label="Description"
+                      name="description"
+                      value={this.state.description}
                       onChange={this.handleValueChanged}
                     />
                   </Form.Group>
@@ -267,6 +294,18 @@ const ProductInputForm = inject("store")(
                         )
                       )}
                     </Form.Control>
+                    <InputField
+                      label="Color (text)"
+                      name="color"
+                      value={this.state.color}
+                      onChange={this.handleValueChanged}
+                    />
+                    <InputField
+                      label="Color (hex)"
+                      name="hex_color"
+                      value={this.state.hex_color}
+                      onChange={this.handleValueChanged}
+                    />
                     <hr />
                     <UploadImage
                       displayedImageOnUi={displayedImageOnUi}

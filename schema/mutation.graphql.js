@@ -169,6 +169,9 @@ const MutationType = new GraphQLObjectType({
         photo: { type: GraphQLUpload },
         categoryId: { type: new GraphQLNonNull(GraphQLString) },
         price: { type: new GraphQLNonNull(GraphQLFloat) },
+        color: { type: GraphQLString },
+        hex_color: { type: GraphQLString },
+        condition: { type: GraphQLString },
         // manufacture_detail: { type: ManufactureInputType },
         // pricing: { type: PricingInputType },
         // seo: { type: new GraphQLList(GraphQLString) }
@@ -198,6 +201,9 @@ const MutationType = new GraphQLObjectType({
           image_public_id: imgPublicId,
           categoryId: args.categoryId,
           price: args.price,
+          color: args.color,
+          hex_color: args.hex_color,
+          condition: args.condition,
         });
         return await newProduct.save();
       },
@@ -214,6 +220,9 @@ const MutationType = new GraphQLObjectType({
         photo: { type: GraphQLUpload },
         categoryId: { type: new GraphQLNonNull(GraphQLString) },
         price: { type: new GraphQLNonNull(GraphQLFloat) },
+        color: { type: GraphQLString },
+        hex_color: { type: GraphQLString },
+        condition: { type: GraphQLString },
         // manufacture_detail: { type: ManufactureInputType },
         // pricing: { type: PricingInputType },
         // seo: { type: new GraphQLList(GraphQLString) }
@@ -258,6 +267,9 @@ const MutationType = new GraphQLObjectType({
             image_public_id: imagePublicId,
             categoryId: args.categoryId,
             price: args.price,
+            color: args.color,
+            hex_color: args.hex_color,
+            condition: args.condition,
             // manufacture_detail: args.manufacture_detail,
             // pricing: args.pricing,
             // seo: args.seo

@@ -13,12 +13,12 @@ import { Styled } from "./logout.styles";
  COMPONENT: Logout 
 --------------------------------------------------------*/
 const Logout = inject("store")(
-  observer(props => {
+  observer((props) => {
     const { uiStore } = props.store;
-    const onLogoutConfirmed = e => {
+    const onLogoutConfirmed = (e) => {
       uiStore.visitHomePage();
       props.history.push({
-        pathname: "/"
+        pathname: "/",
       });
     };
 
@@ -27,7 +27,7 @@ const Logout = inject("store")(
   -----------------------------------*/
     return (
       <Styled>
-        <div>Log out</div>
+        <div>Re-direct to Home Page!</div>
         <button onClick={onLogoutConfirmed}>Confirm</button>
       </Styled>
     );

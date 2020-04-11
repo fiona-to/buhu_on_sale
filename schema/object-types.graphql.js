@@ -58,6 +58,28 @@ const PricingInputType = new GraphQLInputObjectType({
 });
 
 /*----------------------------
+    COLOR_TYPE
+----------------------------*/
+const ColorType = new GraphQLObjectType({
+  name: "ColorType",
+  fields: () => ({
+    textColor: { type: GraphQLString },
+    hexColor: { type: GraphQLString },
+  }),
+});
+
+/*----------------------------
+     COLOR_TYPE_INPUT_TYPE
+----------------------------*/
+const ColorTypeInputType = new GraphQLInputObjectType({
+  name: "ColorTypeInputType",
+  fields: () => ({
+    textColor: { type: GraphQLString },
+    hexColor: { type: GraphQLString },
+  }),
+});
+
+/*----------------------------
     CATEGORY_PRODUCT_STATS_TYPE
 ----------------------------*/
 const CategoryProductStatsType = new GraphQLObjectType({
@@ -88,11 +110,14 @@ const ProductType = new GraphQLObjectType({
     categoryId: { type: new GraphQLNonNull(GraphQLString) },
     category: {
       type: CategoryType,
-      resolve(parent, args) {
-        return Category.findById(parent.categoryId);
+      async resolve(parent, args) {
+        return await Category.findById(parent.categoryId);
       },
     },
     price: { type: GraphQLFloat },
+    color: { type: GraphQLString },
+    hex_color: { type: GraphQLString },
+    condition: { type: GraphQLString },
   }),
 });
 
@@ -128,6 +153,8 @@ module.exports = {
   ManufactureInputType,
   PricingType,
   PricingInputType,
+  ColorType,
+  ColorTypeInputType,
   ProductType,
   CategoryType,
 };

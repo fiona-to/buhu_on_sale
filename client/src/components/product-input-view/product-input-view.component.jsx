@@ -19,6 +19,9 @@ const ProductInputView = (props) => {
     image_url,
     category,
     price,
+    color,
+    hex_color,
+    condition,
   } = props.selectedProd;
 
   return (
@@ -31,13 +34,6 @@ const ProductInputView = (props) => {
                 label="Name"
                 name="name"
                 value={name}
-                disabled={true}
-                className="disable-control"
-              />
-              <TextareaInputField
-                label="Description"
-                name="description"
-                value={description}
                 disabled={true}
                 className="disable-control"
               />
@@ -55,6 +51,21 @@ const ProductInputView = (props) => {
                 disabled={true}
                 className="disable-control"
               />
+              <InputField
+                label="Condition"
+                name="condition"
+                value={condition ? condition : "N/A"}
+                disabled={true}
+                required={false}
+                className="disable-control"
+              />
+              <TextareaInputField
+                label="Description"
+                name="description"
+                value={description}
+                disabled={true}
+                className="disable-control"
+              />
             </Form.Group>
             <Form.Group as={Col} xs={12} sm={12} md={6} id="group2">
               <InputField
@@ -62,6 +73,22 @@ const ProductInputView = (props) => {
                 name="categoryId"
                 value={category.name}
                 disabled={true}
+                className="disable-control"
+              />
+              <InputField
+                label="Color"
+                name="color"
+                value={color ? `${color}` : "N/A"}
+                disabled={true}
+                required={false}
+                className="disable-control"
+              />
+              <InputField
+                label="Hex Color"
+                name="hex_color"
+                value={hex_color ? `${hex_color}` : "N/A"}
+                disabled={true}
+                required={false}
                 className="disable-control"
               />
               <hr />

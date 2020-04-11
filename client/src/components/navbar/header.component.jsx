@@ -31,6 +31,10 @@ export const Header = inject("store")(
       uiStore.visitViewCart();
     };
 
+    const onAboutClick = () => {
+      // TODO
+    };
+
     /*----------------------------------
       RENDERING
     -----------------------------------*/
@@ -46,9 +50,6 @@ export const Header = inject("store")(
                 onClick={onHomeClick}
                 to={{
                   pathname: "/",
-                  // state: {
-                  //   isHome: true
-                  // }
                 }}
               >
                 Home
@@ -61,6 +62,15 @@ export const Header = inject("store")(
                 }}
               >
                 Admin
+              </Link>
+              <Link
+                className="nav-link"
+                onClick={onAboutClick}
+                to={{
+                  pathname: "/about",
+                }}
+              >
+                About
               </Link>
               {/* <Link className="nav-link" to="/" disabled>
               Login

@@ -1,7 +1,11 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+/*----------------------------------
+  Styles
+-----------------------------------*/
 import { Styled } from "./footer.styles";
-
+/*--------------------------------------------------------
+ COMPONENT: Footer 
+--------------------------------------------------------*/
 export const Footer = () => {
   return (
     <Styled>

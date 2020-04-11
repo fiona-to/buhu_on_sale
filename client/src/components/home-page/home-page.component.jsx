@@ -10,6 +10,7 @@ import AppBreadCrumb from "../bread-crumb/bread-crumb.component";
 import AllProductRoutes from "../product-all/product-all.routes";
 import Cart from "../cart/cart.component";
 import PageNotFound from "../page-not-found/page-not-found.component";
+import About from "../about/about.component";
 /*----------------------------------
    GraphQL, MobX
 -----------------------------------*/
@@ -59,6 +60,7 @@ const HomePage = inject("store")(
               />
               <Route path="/products" component={AllProductRoutes} />
               <Route path="/cart" component={Cart} />
+              <Route path="/about" component={About} />
               {HomePageRouteConfig.map((route, index) => (
                 <AppBreadCrumb
                   key={index}

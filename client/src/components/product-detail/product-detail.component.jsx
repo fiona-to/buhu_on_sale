@@ -100,9 +100,11 @@ const ProductDetail = inject("store")(
             image_url,
             in_stock,
             price,
+            color,
+            hex_color,
+            condition,
             //manufacture_detail: { model_number }
           } = this.props.GetProductById.productById;
-
           const { cart } = this.props.store;
 
           return (
@@ -119,9 +121,17 @@ const ProductDetail = inject("store")(
                     <div>
                       Price: <span className="retail-price">{`$${price}`}</span>
                     </div>
-                    <div>Color: TBD</div>
-                    <div>Condition: TBD - Like new</div>
-                    <div>Shipping: TBD - USA, VN</div>
+                    <div>Color: {color}</div>
+                    <div
+                      style={{
+                        backgroundColor: `${hex_color}`,
+                        width: "28px",
+                        height: "28px",
+                        borderRadius: "50px",
+                      }}
+                    ></div>
+                    <div>Condition: {condition}</div>
+                    <div>Shipping: USA, VN</div>
                     {in_stock ? (
                       <div>
                         <span className="in-stock">In stock</span>

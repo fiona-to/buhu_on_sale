@@ -25,6 +25,9 @@ const getProducts = gql`
         name
       }
       price
+      color
+      hex_color
+      condition
     }
   }
 `;
@@ -53,6 +56,9 @@ const getProductById = gql`
         name
       }
       price
+      color
+      hex_color
+      condition
     }
   }
 `;
@@ -85,6 +91,9 @@ const getProductByCategory = gql`
         hidden
       }
       price
+      color
+      hex_color
+      condition
     }
   }
 `;
@@ -105,6 +114,9 @@ const addProduct = gql`
     $photo: Upload
     $categoryId: String!
     $price: Float!
+    $color: String
+    $hex_color: String
+    $condition: String
   ) {
     addProduct(
       name: $name
@@ -113,6 +125,9 @@ const addProduct = gql`
       photo: $photo
       categoryId: $categoryId
       price: $price
+      color: $color
+      hex_color: $hex_color
+      condition: $condition
     ) {
       id
       name
@@ -134,6 +149,9 @@ const addProduct = gql`
         name
       }
       price
+      color
+      hex_color
+      condition
     }
   }
 `;
@@ -149,6 +167,9 @@ const updateProductById = gql`
     $photo: Upload
     $categoryId: String!
     $price: Float!
+    $color: String
+    $hex_color: String
+    $condition: String
   ) {
     updateProductById(
       id: $id
@@ -160,6 +181,9 @@ const updateProductById = gql`
       photo: $photo
       categoryId: $categoryId
       price: $price
+      color: $color
+      hex_color: $hex_color
+      condition: $condition
     ) {
       id
       name
@@ -181,6 +205,9 @@ const updateProductById = gql`
         name
       }
       price
+      color
+      hex_color
+      condition
     }
   }
 `;
