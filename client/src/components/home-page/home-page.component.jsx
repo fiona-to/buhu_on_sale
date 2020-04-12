@@ -25,7 +25,7 @@ import { Styled } from "./home-page.styles";
 --------------------------------------------------------*/
 const HomePage = inject("store")(
   observer((props) => {
-    const { isHome, isViewCart } = props.store.uiStore;
+    const { isHome, isViewCart, isAbout } = props.store.uiStore;
 
     /*----------------------------------
     RENDERING
@@ -34,7 +34,7 @@ const HomePage = inject("store")(
       <Styled>
         <div id="page-container">
           <div id="content-wrapper">
-            {isHome || isViewCart ? (
+            {isHome || isViewCart || isAbout ? (
               <div className="sticky-header">
                 <Header />
               </div>

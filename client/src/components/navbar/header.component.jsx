@@ -32,7 +32,7 @@ export const Header = inject("store")(
     };
 
     const onAboutClick = () => {
-      // TODO
+      uiStore.visitAbout();
     };
 
     /*----------------------------------
