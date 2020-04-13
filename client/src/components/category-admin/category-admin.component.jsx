@@ -3,6 +3,7 @@ import AdminHeader from "../admin-header/admin-header.component";
 import CategoryInputForm from "../category-input-form/category-input-form.component";
 import CategoryTable from "../category-admin-table/category-admin-table.component";
 import MainButton from "../main-button/main-button.component";
+import { AppSpinner } from "../spinner/spinner.component";
 /*----------------------------------
   GraphQL, MobX
 -----------------------------------*/
@@ -17,13 +18,13 @@ import { Styled } from "./category-admin.styles";
  COMPONENT: CategoryAdmin
 --------------------------------------------------------*/
 const CategoryAdmin = inject("store")(
-  observer(props => {
+  observer((props) => {
     const { isAddNewCat } = props.store.catStore;
 
     /*----------------------------------
       EVENT HANDLING
     -----------------------------------*/
-    const displayCategories = categories => {
+    const displayCategories = (categories) => {
       return <CategoryTable data={categories} />;
     };
     /*----------------------------------
@@ -33,7 +34,7 @@ const CategoryAdmin = inject("store")(
       <Styled>
         <AdminHeader headerText="Categories management" />
         <MainButton
-          onClick={e => props.store.catStore.addNewCategory()}
+          onClick={(e) => props.store.catStore.addNewCategory()}
           size="sm"
           disabled={isAddNewCat}
         >
@@ -45,8 +46,9 @@ const CategoryAdmin = inject("store")(
           </div>
         ) : null}
         {props.CategoryList.loading ? (
-          // TODO: ADD SPINNER
-          <div>Loading...</div>
+          <div className="app-spinner">
+            <AppSpinner />
+          </div>
         ) : (
           displayCategories(props.CategoryList.categories)
         )}

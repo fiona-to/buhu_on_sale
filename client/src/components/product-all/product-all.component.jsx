@@ -14,15 +14,19 @@ import { Styled } from "./product-all.styles";
 /*--------------------------------------------------------
  COMPONENTS: AllProductsPage
 --------------------------------------------------------*/
-const AllProductsPage = props => {
+const AllProductsPage = (props) => {
   const displayProductItem = () => {
     if (props.AllProducts.loading) {
-      return <AppSpinner />;
+      return (
+        <div className="app-spinner">
+          <AppSpinner />
+        </div>
+      );
     } else {
       const products = props.AllProducts.products;
 
       if (products) {
-        return products.map(item => {
+        return products.map((item) => {
           return (
             <Col xs={6} sm={6} md={4} lg={3} key={item.id}>
               <ProductItem item={item} isAllProductPage={true} />

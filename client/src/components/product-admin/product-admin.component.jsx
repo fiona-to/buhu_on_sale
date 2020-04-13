@@ -3,6 +3,7 @@ import AdminHeader from "../admin-header/admin-header.component";
 import MainButton from "../main-button/main-button.component";
 import ProductTable from "../product-admin-table/product-admin-table.component";
 import ProductInputForm from "../product-input-form/product-input-form.component";
+import { AppSpinner } from "../spinner/spinner.component";
 /*----------------------------------
   GraphQL, MobX
 -----------------------------------*/
@@ -17,12 +18,12 @@ import { Styled } from "./product-admin.styles";
  COMPONENT: ProductAdmin
 --------------------------------------------------------*/
 const ProductAdmin = inject("store")(
-  observer(props => {
+  observer((props) => {
     const { isAddNewProd } = props.store.prodStore;
     /*----------------------------------
       EVENT HANDLING
     -----------------------------------*/
-    const displayProducts = products => {
+    const displayProducts = (products) => {
       return <ProductTable data={products} />;
     };
     /*----------------------------------
@@ -33,7 +34,7 @@ const ProductAdmin = inject("store")(
         <AdminHeader headerText="Products management" />
         <MainButton
           size="sm"
-          onClick={e => props.store.prodStore.addNewProduct()}
+          onClick={(e) => props.store.prodStore.addNewProduct()}
           disabled={isAddNewProd}
         >
           Add New
@@ -44,8 +45,9 @@ const ProductAdmin = inject("store")(
           </div>
         ) : null}
         {props.ProductList.loading ? (
-          // TODO: ADD SPINNER
-          <div>Loading...</div>
+          <div className="app-spinner">
+            <AppSpinner />
+          </div>
         ) : (
           displayProducts(props.ProductList.products)
         )}

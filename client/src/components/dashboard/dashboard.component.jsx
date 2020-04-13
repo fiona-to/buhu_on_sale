@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AdminHeader from "../admin-header/admin-header.component";
 import ProductSaleStats from "../product-sale-stats/product-sale-stats.component";
 import CategoryStats from "../category-stats/category-stats.component";
+import { AppSpinner } from "../spinner/spinner.component";
 /*----------------------------------
   GraphQL, MobX
 -----------------------------------*/
@@ -11,7 +12,7 @@ import compose from "lodash.flowright";
 import { getCategories } from "../../graphql-queries/category.graphql";
 import {
   convertCategoryToPieChartData,
-  convertCategoryToProductBarChartData
+  convertCategoryToProductBarChartData,
 } from "../../utils/rechart-utils";
 /*----------------------------------
   Styles
@@ -35,7 +36,9 @@ const Dashboard = inject("store")(
               <Row>
                 <Col xs={12} sm={12} md={8} lg={8}>
                   {this.props.GetCategories.loading ? (
-                    <div>Still loading...</div>
+                    <div className="app-spinner">
+                      <AppSpinner />
+                    </div>
                   ) : (
                     <ProductSaleStats
                       data={convertCategoryToProductBarChartData(
@@ -46,7 +49,9 @@ const Dashboard = inject("store")(
                 </Col>
                 <Col xs={12} sm={12} md={4} lg={4}>
                   {this.props.GetCategories.loading ? (
-                    <div>Still loading...</div>
+                    <div className="app-spinner">
+                      <AppSpinner />
+                    </div>
                   ) : (
                     <CategoryStats
                       data={convertCategoryToPieChartData(

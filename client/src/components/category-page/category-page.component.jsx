@@ -14,18 +14,22 @@ import { Styled } from "./category-page.styles.js";
 /*--------------------------------------------------------
  COMPONENT: CategoryPage 
 --------------------------------------------------------*/
-const CategoryPage = props => {
+const CategoryPage = (props) => {
   /*----------------------------
     renderCategoryList
   ----------------------------*/
   const renderCategoryList = () => {
     if (props.Categories.loading) {
-      return <AppSpinner />;
+      return (
+        <div className="app-spinner">
+          <AppSpinner />
+        </div>
+      );
     } else {
       const { categories } = props.Categories;
 
       if (categories) {
-        return categories.map(category => {
+        return categories.map((category) => {
           return (
             <Col xs={12} sm={12} md={4} key={category.id}>
               <CategoryItem

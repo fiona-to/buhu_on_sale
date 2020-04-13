@@ -14,15 +14,19 @@ import { Styled } from "./product-page.styles";
 /*--------------------------------------------------------
  COMPONENTS: ProductPage
 --------------------------------------------------------*/
-const ProductPage = props => {
+const ProductPage = (props) => {
   const displayProductItem = () => {
     if (props.ProductByCategory.loading) {
-      return <AppSpinner />;
+      return (
+        <div className="app-spinner">
+          <AppSpinner />
+        </div>
+      );
     } else {
       const products = props.ProductByCategory.productByCategory;
 
       if (products) {
-        return products.map(item => {
+        return products.map((item) => {
           return (
             <Col xs={6} sm={6} md={4} lg={3} key={item.id}>
               <ProductItem item={item} />
@@ -50,7 +54,7 @@ const ProductPage = props => {
 
 export default graphql(getProductByCategory, {
   name: "ProductByCategory",
-  options: props => ({
-    variables: { catId: props.match.params.id }
-  })
+  options: (props) => ({
+    variables: { catId: props.match.params.id },
+  }),
 })(ProductPage);
