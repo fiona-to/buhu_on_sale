@@ -16,6 +16,7 @@ import { Styled } from "./header.styles.js";
 export const Header = inject("store")(
   observer((props) => {
     const { uiStore, cart } = props.store;
+
     /*----------------------------------
       EVENT HANDLING
     -----------------------------------*/
@@ -78,7 +79,7 @@ export const Header = inject("store")(
              */}
               <Link className="nav-link" onClick={onViewCartClick} to="/cart">
                 <IosCart fontSize="26px" color="#bbe1fa" />
-                <Badge pill>{cart.countTotalItem()}</Badge>
+                <Badge pill>{cart.countTotalItem}</Badge>
               </Link>
                
             </Nav>

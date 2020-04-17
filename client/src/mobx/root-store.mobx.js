@@ -1,8 +1,13 @@
-import { observable, decorate } from "mobx";
 import CatStore from "./cat-store.mobx";
 import ProdStore from "./prod-store.mobx";
 import Cart from "./cart.mobx";
 import GeneralUIStore from "./general-ui-store.mobx";
+import { create } from "mobx-persist";
+
+const hydrate = create({
+  storage: localStorage,
+  jsonify: true,
+});
 
 class RootStore {
   constructor() {
@@ -10,68 +15,20 @@ class RootStore {
     this.prodStore = new ProdStore();
     this.cart = new Cart();
     this.uiStore = new GeneralUIStore();
+
+    hydrate("catStore", this.catStore).then(() => {
+      console.log("Persit catStore");
+    });
+    hydrate("cart", this.cart).then(() => {
+      console.log("Persit cart");
+    });
+    hydrate("uiStore", this.uiStore).then(() => {
+      console.log("Persist uiStore");
+    });
+    hydrate("prodStore", this.prodStore).then(() => {
+      console.log("Persist prodStore");
+    });
   }
 }
 
-decorate(RootStore, {
-  catStore: observable,
-  prodStore: observable,
-  cart: observable,
-  uiStore: observable
-});
-
 export default RootStore;
-
-// import { observable, decorate } from "mobx";
-
-// import Product from "./product.mobx";
-
-// class RootStore {
-//   constructor() {}
-//   products = [];
-//   isAddNewCategory = false;
-
-//   addProduct(product) {
-//     this.products.push(
-//       new Product(
-//         product.id,
-//         product.title,
-//         product.description,
-//         product.quantity,
-//         product.image_url,
-//         product.image_public_id,
-//         product.manufacture_detail,
-//         product.pricing,
-//         product.seo
-//       )
-//     );
-//   }
-
-//   addProductList(listProduct) {
-//     this.products = [];
-//     this.products = listProduct.map(product => Object.assign({}, product));
-//   }
-// }
-
-// decorate(RootStore, {
-//   products: observable,
-//   isAddNewCategory: observable
-// });
-
-// export default RootStore;
-
-// Object.assign(
-//   {},
-//   new Product(
-//     item.id,
-//     item.title,
-//     item.description,
-//     item.quantity,
-//     item.image_url,
-//     item.image_public_id,
-//     item.manufacture_detail,
-//     item.pricing,
-//     item.seo
-//   )
-// )
-// );

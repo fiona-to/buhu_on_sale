@@ -184,7 +184,7 @@ const ProductDetail = inject("store")(
                     <Button
                       size="lg"
                       variant="primary"
-                      disabled={!cart.countTotalItem()}
+                      disabled={!cart.countTotalItem}
                       onClick={this.onCheckOutClick}
                     >
                       <MdCheckmark fontSize="26px" color="#bbe1fa" />

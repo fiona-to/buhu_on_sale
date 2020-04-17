@@ -1,5 +1,8 @@
 import { observable, decorate } from "mobx";
-
+import { persist } from "mobx-persist";
+/*--------------------------------------------------------
+ CLASS: Product 
+--------------------------------------------------------*/
 class Product {
   constructor({ id, name, quantity, image_url, price }) {
     this.id = id;
@@ -11,11 +14,11 @@ class Product {
 }
 
 decorate(Product, {
-  id: observable,
-  name: observable,
-  quantity: observable,
-  image_url: observable,
-  price: observable,
+  id: [persist, observable],
+  name: [persist, observable],
+  quantity: [persist, observable],
+  image_url: [persist, observable],
+  price: [persist, observable],
 });
 
 export default Product;

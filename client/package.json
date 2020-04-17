@@ -13,6 +13,7 @@
     "graphql-tag": "^2.10.1",
     "lodash.flowright": "^3.5.0",
     "mobx": "^5.15.2",
+    "mobx-persist": "^0.4.1",
     "mobx-react": "^6.1.5",
     "node-sass": "^4.13.1",
     "popper.js": "^1.16.0",

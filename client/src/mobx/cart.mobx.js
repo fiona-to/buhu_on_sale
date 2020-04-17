@@ -1,7 +1,9 @@
-import { observable, decorate } from "mobx";
-
+import { observable, decorate, computed, action } from "mobx";
+import { persist } from "mobx-persist";
 import Product from "./product.mobx";
-
+/*--------------------------------------------------------
+ CLASS: Cart 
+--------------------------------------------------------*/
 class Cart {
   constructor() {
     this.products = [];
@@ -44,7 +46,7 @@ class Cart {
   /*----------------------------------
     Count total items
   -----------------------------------*/
-  countTotalItem() {
+  get countTotalItem() {
     let count = 0;
     this.products.forEach((item) => {
       count += item.quantity;
@@ -55,7 +57,7 @@ class Cart {
   /*----------------------------------
     Calculate total price for cart's items
   -----------------------------------*/
-  calculateTotalPrice() {
+  get calculateTotalPrice() {
     let total = 0.0;
     this.products.forEach((item) => {
       total += item.quantity * item.price;
@@ -84,6 +86,14 @@ class Cart {
   }
 }
 
-decorate(Cart, { products: observable });
+decorate(Cart, {
+  products: [persist("list"), observable],
+  countTotalItem: computed,
+  calculateTotalPrice: computed,
+  addToCart: action,
+  addOneToCart: action,
+  removeProductById: action,
+  updateQuantityById: action,
+});
 
 export default Cart;

@@ -20,7 +20,7 @@ const Cart = inject("store")(
       Func: displayCheckOut
     -----------------------------------*/
     const displayCheckOut = ({ cart, totalItems }) => {
-      const totalPrice = cart.calculateTotalPrice();
+      const totalPrice = cart.calculateTotalPrice;
       const taxAndFee = (totalPrice * 7) / 100;
       const deliveryFee = 8;
       const payment = totalPrice + taxAndFee + deliveryFee;
@@ -59,7 +59,7 @@ const Cart = inject("store")(
     const displayViewCart = () => {
       const { cart } = props.store;
       const { products } = cart;
-      const totalItems = cart.countTotalItem();
+      const totalItems = cart.countTotalItem;
       return (
         <Row>
           <Col xs={12} sm={12} md={8} lg={9}>
