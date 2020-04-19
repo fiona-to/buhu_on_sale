@@ -19,13 +19,10 @@ app.use(cors());
 /*----------------------------
   MongoDB:
 ----------------------------*/
-mongoose.connect(
-  "mongodb+srv://phuongto:Msjfeng82@cluster0-vwuwt.mongodb.net/product_on_sale?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 mongoose.connection
   .on("error", () => {
     console.log("Dis-connected to MongoDB... Error occurred!");
