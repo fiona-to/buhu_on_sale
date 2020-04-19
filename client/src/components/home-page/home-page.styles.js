@@ -7,7 +7,7 @@ export const Styled = styled.div`
   }
 
   #content-wrapper {
-    padding-bottom: 3.6rem; /* Height of the footer */
+    padding-bottom: 1.6rem; /* Height of the footer */
   }
 
   .sticky-header {

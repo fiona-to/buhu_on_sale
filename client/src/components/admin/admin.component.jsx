@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Sidebar from "../sidebar/sidebar.component";
+import PageNotFound from "../page-not-found/page-not-found.component";
 import { Routes as SideBarRouteConfig } from "../sidebar/sidebar.routes";
 /*----------------------------------
   Styles
@@ -10,7 +11,7 @@ import { Styled } from "./admin.styles";
 /*--------------------------------------------------------
  COMPONENT: Admin 
 --------------------------------------------------------*/
-const Admin = props => {
+const Admin = (props) => {
   return (
     <Styled>
       <Container fluid>
@@ -30,6 +31,7 @@ const Admin = props => {
                   children={<route.childContent />}
                 />
               ))}
+              <Route path="*" component={PageNotFound} />
             </Switch>
           </Col>
         </Row>

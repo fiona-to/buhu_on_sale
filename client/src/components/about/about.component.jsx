@@ -10,6 +10,30 @@ const About = (props) => {
   return (
     <Styled>
       <div className="container">
+        <div className="features">
+          <div className="features__1">
+            <h2>Features</h2>
+            <ul>
+              <li>View products based on category</li>
+              <li>View all products</li>
+              <li>Add products to Cart</li>
+              <li>Eidt / Remove items in Cart</li>
+              <li>CRUD category or products</li>
+              <li>Upload / Delete images</li>
+              <li>View statistic / Sales charts</li>
+            </ul>
+          </div>
+          <div className="features__2">
+            <h2>To be developing</h2>
+            <ul>
+              <li>Login / Log out / Permission</li>
+              <li>Blogs</li>
+              <li>Search engine</li>
+              <li>Rating / Comment products</li>
+              <li>Payment</li>
+            </ul>
+          </div>
+        </div>
         <div className="grid">
           <div className="intro_general">
             <h2 className="open__source">Open Source</h2>

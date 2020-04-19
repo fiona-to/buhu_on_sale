@@ -25,7 +25,7 @@ import { Styled } from "./home-page.styles";
 --------------------------------------------------------*/
 const HomePage = inject("store")(
   observer((props) => {
-    const { isHome, isViewCart, isAbout } = props.store.uiStore;
+    const { isHome, isViewCart, isAbout, isNotFound } = props.store.uiStore;
 
     /*----------------------------------
     RENDERING
@@ -34,7 +34,7 @@ const HomePage = inject("store")(
       <Styled>
         <div id="page-container">
           <div id="content-wrapper">
-            {isHome || isViewCart || isAbout ? (
+            {isHome || isViewCart || isAbout || isNotFound ? (
               <div className="sticky-header">
                 <Header />
               </div>
@@ -70,13 +70,15 @@ const HomePage = inject("store")(
                   component={route.childContent}
                 />
               ))}
-              <Route component={PageNotFound} />
+              <Route path="*" component={PageNotFound} />
             </Switch>
           </div>
           <div id="footer">
             <Footer />
           </div>
-          {/* <div id="footer">{isHome || isViewCart ? <Footer /> : null}</div> */}
+          {/* <div id="footer">
+            {isHome || isViewCart || isAbout ? <Footer /> : null}
+          </div> */}
         </div>
       </Styled>
     );

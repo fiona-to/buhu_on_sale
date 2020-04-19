@@ -3,10 +3,11 @@ import { withRouter, Switch, Route } from "react-router-dom";
 import AppBreadCrumb from "../bread-crumb/bread-crumb.component";
 import ProductPage from "./product-page.component";
 import ProductDetail from "../product-detail/product-detail.component";
+import PageNotFound from "../page-not-found/page-not-found.component";
 /*--------------------------------------------------------
   CONFIGURATION: PRODUCT ROUTES
 --------------------------------------------------------*/
-const ProductRoutes = props => {
+const ProductRoutes = (props) => {
   return (
     <div>
       <Switch>
@@ -22,6 +23,7 @@ const ProductRoutes = props => {
           title="Detail"
           component={ProductDetail}
         />
+        <Route path="*" component={PageNotFound} />
       </Switch>
     </div>
   );

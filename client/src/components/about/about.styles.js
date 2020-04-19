@@ -4,7 +4,53 @@ export const Styled = styled.div`
   .container {
     padding: 25px;
   }
+  //--------------------------------------------------------------------------
+  // FEATURE GRID - START
+  //--------------------------------------------------------------------------
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px auto;
+  }
 
+  .features__1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    ul {
+      margin-left: 40px;
+    }
+  }
+
+  .features__2 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+    ul {
+      margin-left: 40px;
+    }
+  }
+
+  @media (max-width: 766px) {
+    .features__1 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      font-size: 80%;
+    }
+
+    .features__2 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      font-size: 80%;
+    }
+  }
+  //--------------------------------------------------------------------------
+  // FEATURE GRID - END
+  //--------------------------------------------------------------------------
+
+  //--------------------------------------------------------------------------
+  // TECHNOLOGY GRID - START
+  //--------------------------------------------------------------------------
   .grid {
     max-width: 412px;
     display: grid;
@@ -655,4 +701,7 @@ export const Styled = styled.div`
       }
     }
   }
+  //--------------------------------------------------------------------------
+  // TECHNOLOGY GRID - END
+  //--------------------------------------------------------------------------
 `;

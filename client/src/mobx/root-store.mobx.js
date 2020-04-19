@@ -16,18 +16,13 @@ class RootStore {
     this.cart = new Cart();
     this.uiStore = new GeneralUIStore();
 
-    hydrate("catStore", this.catStore).then(() => {
-      console.log("Persit catStore");
-    });
-    hydrate("cart", this.cart).then(() => {
-      console.log("Persit cart");
-    });
-    hydrate("uiStore", this.uiStore).then(() => {
-      console.log("Persist uiStore");
-    });
-    hydrate("prodStore", this.prodStore).then(() => {
-      console.log("Persist prodStore");
-    });
+    // hydrate("catStore", this.catStore).then(() => {
+    //   console.log("Persit catStore");
+    // });
+    hydrate("catStore", this.catStore);
+    hydrate("cart", this.cart);
+    hydrate("uiStore", this.uiStore);
+    hydrate("prodStore", this.prodStore);
   }
 }
 
