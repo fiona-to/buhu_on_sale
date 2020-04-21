@@ -10,6 +10,7 @@ export default class DeleteIcon extends React.Component {
         <MdTrash
           fontSize="28px"
           className="trash-icon"
+          // color="#7d5f5b"
           color="#ef9a9a"
           {...this.props}
         />

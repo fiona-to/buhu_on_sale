@@ -9,7 +9,7 @@ import { Styled } from "./delete-alert.styles";
 /*--------------------------------------------------------
  COMPONENT: BHDeleteAlert
 --------------------------------------------------------*/
-const DeleteAlert = props => {
+const DeleteAlert = (props) => {
   const { name, cancel, confirm } = props;
   return (
     <Styled>
@@ -21,8 +21,10 @@ const DeleteAlert = props => {
         </p>
         <hr />
         <div className="d-flex justify-content-end">
-          <MainButton onClick={e => cancel()}>Cancel</MainButton>
-          <SecondaryButton onClick={e => confirm()}>Yes</SecondaryButton>
+          <MainButton onClick={(e) => cancel()}>Cancel</MainButton>
+          <SecondaryButton onClick={(e) => confirm()} disabled={true}>
+            Yes
+          </SecondaryButton>
         </div>
       </Alert>
     </Styled>

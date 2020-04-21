@@ -209,13 +209,6 @@ const ProductInputForm = inject("store")(
         } else {
           this.saveProduct();
         }
-
-        // const form = e.currentTarget;
-        // if (form.checkValidity() === false) {
-        //   e.stopPropagation();
-        // }
-        // this.setState({ validated: true });
-        // this.saveCategory();
       };
 
       /*----------------------------------
@@ -316,7 +309,11 @@ const ProductInputForm = inject("store")(
                 </Form.Row>
                 <Form.Row>
                   <Form.Group as={Row} id="formButtons">
-                    <MainButton className="action-btn" type="submit">
+                    <MainButton
+                      className="action-btn"
+                      type="submit"
+                      disabled={true}
+                    >
                       {existedProd ? "Update" : "Save"}
                     </MainButton>
                     <SecondaryButton

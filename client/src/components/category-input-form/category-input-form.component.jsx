@@ -13,7 +13,7 @@ import compose from "lodash.flowright";
 import {
   addCategory,
   getCategories,
-  updateCategoryById
+  updateCategoryById,
 } from "../../graphql-queries/category.graphql";
 /*----------------------------------
   Styles
@@ -44,7 +44,7 @@ const CategoryInputForm = inject("store")(
           isLoading: false,
           photo: null,
           displayedImageOnUi: "",
-          existedCat: false
+          existedCat: false,
         };
       }
 
@@ -53,14 +53,14 @@ const CategoryInputForm = inject("store")(
           this.setState({
             ...this.props.selectedCat,
             displayedImageOnUi: this.props.selectedCat.image_url,
-            existedCat: true
+            existedCat: true,
           });
         }
       }
       /*----------------------------------
       Ant Design
       -----------------------------------*/
-      handleUploadImage = info => {
+      handleUploadImage = (info) => {
         if (info.file.status === "uploading") {
           this.setState({ isLoading: true });
           return;
@@ -69,14 +69,14 @@ const CategoryInputForm = inject("store")(
           AntMessage.success(`${info.file.name} file uploaded successfully`);
           // Save uploaded photo to component's state
           this.setState({
-            photo: info.file.originFileObj
+            photo: info.file.originFileObj,
           });
 
           // Get this url from response in real world.
-          getBase64(info.file.originFileObj, imageUrl =>
+          getBase64(info.file.originFileObj, (imageUrl) =>
             this.setState({
               displayedImageOnUi: imageUrl,
-              isLoading: false
+              isLoading: false,
             })
           );
         } else if (info.file.status === "error") {
@@ -86,11 +86,11 @@ const CategoryInputForm = inject("store")(
       /*----------------------------------
         EVENT HANDLING
       -----------------------------------*/
-      handleValueChanged = e => {
+      handleValueChanged = (e) => {
         this.setState({ [e.target.name]: e.target.value });
       };
 
-      handleHiddenChange = e => {
+      handleHiddenChange = (e) => {
         this.setState({ hidden: e.target.checked });
       };
 
@@ -101,18 +101,18 @@ const CategoryInputForm = inject("store")(
               name: this.state.name,
               description: this.state.description,
               photo: this.state.photo,
-              hidden: this.state.hidden
+              hidden: this.state.hidden,
             },
             refetchQueries: [
               {
-                query: getCategories
-              }
-            ]
+                query: getCategories,
+              },
+            ],
           })
-          .then(data => {
+          .then((data) => {
             this.props.store.catStore.cancelAddCategory();
           })
-          .catch(e => {
+          .catch((e) => {
             console.log(e);
             return;
           });
@@ -128,26 +128,26 @@ const CategoryInputForm = inject("store")(
               hidden: this.state.hidden,
               image_url: this.state.image_url,
               image_public_id: this.state.image_public_id,
-              photo: this.state.photo
+              photo: this.state.photo,
             },
-            refetchQueries: [{ query: getCategories }]
+            refetchQueries: [{ query: getCategories }],
           })
-          .then(data => {
+          .then((data) => {
             this.props.store.catStore.cancelEditCategory();
           })
-          .catch(e => {
+          .catch((e) => {
             console.log(e);
             return;
           });
       };
 
-      handleCancelCategory = e => {
+      handleCancelCategory = (e) => {
         if (this.state.existedCat) {
           this.props.store.catStore.cancelEditCategory();
         } else this.props.store.catStore.cancelAddCategory();
       };
 
-      handleFormSubmit = e => {
+      handleFormSubmit = (e) => {
         e.preventDefault();
         if (this.state.existedCat) {
           this.updateCategory();
@@ -220,7 +220,11 @@ const CategoryInputForm = inject("store")(
 
                 <Form.Row>
                   <Form.Group as={Row} id="formButtons">
-                    <MainButton className="action-btn" type="submit">
+                    <MainButton
+                      className="action-btn"
+                      type="submit"
+                      disabled={true}
+                    >
                       {existedCat ? "Update" : "Save"}
                     </MainButton>
                     <SecondaryButton

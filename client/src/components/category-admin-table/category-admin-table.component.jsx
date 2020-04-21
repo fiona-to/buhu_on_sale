@@ -11,7 +11,7 @@ import { observer, inject } from "mobx-react";
 import { graphql } from "react-apollo";
 import {
   deleteCategoryById,
-  getCategories
+  getCategories,
 } from "../../graphql-queries/category.graphql";
 /*----------------------------------
   Styles
@@ -22,7 +22,7 @@ import { Styled } from "./category-admin-table.styles";
  COMPONENT: CategoryTable
 --------------------------------------------------------*/
 const CategoryTable = inject("store")(
-  observer(props => {
+  observer((props) => {
     const [id, setId] = useState(null);
     const [name, setName] = useState("");
     const [imgPublicId, setImgPublicId] = useState("");
@@ -45,27 +45,27 @@ const CategoryTable = inject("store")(
         .DeleteCategoryById({
           variables: {
             id: id,
-            imgPublicId: imgPublicId
+            imgPublicId: imgPublicId,
           },
-          refetchQueries: [{ query: getCategories }]
+          refetchQueries: [{ query: getCategories }],
         })
-        .then(data => {
+        .then((data) => {
           setLocalState(null, "", "", null);
           props.store.catStore.cancelDeleteCategory();
           return;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           return;
         });
     };
 
-    const handleDeleteCategory = row => {
+    const handleDeleteCategory = (row) => {
       setLocalState(row.id, row.name, row.image_public_id, "warning-row");
       props.store.catStore.deleteCategory();
     };
 
-    const handleEditCategory = row => {
+    const handleEditCategory = (row) => {
       setId(row.id);
       props.store.catStore.editCategory();
     };
@@ -82,17 +82,17 @@ const CategoryTable = inject("store")(
         formatter: (cellContent, row) => {
           return (
             <div className="action-icons">
-              <EditIcon onClick={e => handleEditCategory(row)} />
-              <DeleteIcon onClick={e => handleDeleteCategory(row)} />
+              <EditIcon onClick={(e) => handleEditCategory(row)} />
+              <DeleteIcon onClick={(e) => handleDeleteCategory(row)} />
             </div>
           );
-        }
-      }
+        },
+      },
     ];
 
     const expandedForm = {
-      renderer: row => {
-        const category = data.filter(item => item.id === row.id);
+      renderer: (row) => {
+        const category = data.filter((item) => item.id === row.id);
         const compToBeRender =
           isEditCat === true && category[0].id === id ? (
             <CategoryInputForm selectedCat={category[0]} />
@@ -102,7 +102,7 @@ const CategoryTable = inject("store")(
         return <div>{compToBeRender}</div>;
       },
       showExpandColumn: true,
-      expandByColumnOnly: false
+      expandByColumnOnly: false,
       //onlyOneExpanding: isEditCat // ONLY ALLOW TO EXPAND ONE ROW IN EDIT MODE
     };
 
