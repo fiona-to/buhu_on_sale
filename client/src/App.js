@@ -15,7 +15,7 @@ import { store } from "./mobx/store.mobx";
 /*----------------------------------
   Styles
 -----------------------------------*/
-import "./App.scss";
+import "./App.css";
 import IosHome from "react-ionicons/lib/IosHome";
 /*--------------------------------------------------------
  COMPONENT: APP
